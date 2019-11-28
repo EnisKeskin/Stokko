@@ -9,4 +9,9 @@
     <string name="kayıtgidis">Hesabın yok mu? Kaydol</string>
     <string name="k_adi">Kullanıcı Adı</string>
     <string name="mail">Mail</string>
+    <string name="kayitSifre">Şifre</string>
+    <string name="kayitsifretekrar">Şİfre Tekrar</string>
+    <string name="magazaAdresi">Mağaza Adersi</string>
+    <string name="magazaAdi">Mağaza Adı</string>
+    <string name="kaydol">Kaydol</string>
 </resources>

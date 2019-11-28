@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Şifre"
+        android:hint="@string/kayitSifre"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/mail"
         app:layout_constraintTop_toBottomOf="@+id/mail" />
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Şİfre Tekrar"
+        android:hint="@string/kayitsifretekrar"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/sifre"
         app:layout_constraintTop_toBottomOf="@+id/sifre" />
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="Mağaza Adersi"
+        android:hint="@string/magazaAdresi"
         android:inputType="textPostalAddress"
         app:layout_constraintStart_toStartOf="@+id/magaza_adi"
         app:layout_constraintTop_toBottomOf="@+id/magaza_adi" />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="Mağaza Adı"
+        android:hint="@string/magazaAdi"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/sifre_tekrar"
         app:layout_constraintTop_toBottomOf="@+id/sifre_tekrar" />
@@ -79,7 +79,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="64dp"
         android:background="#F44336"
-        android:text="Kaydol"
+        android:text="@string/kaydol"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="@+id/magaza_adresi"
         app:layout_constraintTop_toBottomOf="@+id/magaza_adresi" />
