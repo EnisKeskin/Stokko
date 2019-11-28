@@ -7,4 +7,6 @@
     <string name="password">Şifre</string>
     <string name="login">Giriş Yap</string>
     <string name="kayıtgidis">Hesabın yok mu? Kaydol</string>
+    <string name="k_adi">Kullanıcı Adı</string>
+    <string name="mail">Mail</string>
 </resources>
