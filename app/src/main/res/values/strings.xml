@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Stockko</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Cute</string>
+    <string name="tab_text_2">Ayşegül</string>
+    <string name="rememberMe">Beni Hatırla</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="password">Şifre</string>
+    <string name="login">Giriş Yap</string>
+    <string name="kayıtgidis">Hesabın yok mu? Kaydol</string>
 </resources>
