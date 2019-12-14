@@ -5,22 +5,22 @@ import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.stockko.R
+import com.example.stockko.product.ProductItem
+import com.example.stockko.product.ProductRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class PlaceholderFragment : Fragment() {
-    var allItem = ArrayList<ProductItem>()
+    private var allProduct = ArrayList<ProductItem>()
     lateinit var myAdapter: ProductRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Log.e("başlık","create çalıştı")
     }
 
     override fun onCreateView(
@@ -28,18 +28,18 @@ class PlaceholderFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
 
-        var position = (arguments?.getString(ARG_SECTION_TITLE) ?:1)
-        Log.e("başlık","$position")
-        when(position){
-            "Cute"->{
+        var position = (arguments?.getString(ARG_SECTION_TITLE) ?: 1)
+
+        when (position) {
+            "Cute" -> {
                 fillDataSource()
             }
-            "aysegul"->{
+            "aysegul" -> {
 
             }
         }
-        var recyclerView :RecyclerView=root.findViewById(R.id.recyclerViewItem)
-        myAdapter = ProductRecyclerViewAdapter(allItem)
+        val recyclerView: RecyclerView = root.findViewById(R.id.recyclerViewItem)
+        myAdapter = ProductRecyclerViewAdapter(allProduct)
         recyclerView.adapter = myAdapter
 
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
@@ -47,22 +47,22 @@ class PlaceholderFragment : Fragment() {
 
         return root
     }
-
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
         private const val ARG_SECTION_TITLE = "section_number"
 
         @JvmStatic
-        fun newInstance(sectionNumber: Int,sectionTitle:String): PlaceholderFragment {
+        fun newInstance(sectionNumber: Int, sectionTitle: String): PlaceholderFragment {
             return PlaceholderFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
-                    putString(ARG_SECTION_TITLE,sectionTitle)
+                    putString(ARG_SECTION_TITLE, sectionTitle)
                 }
             }
         }
     }
-    private fun fillDataSource() {
+
+    fun fillDataSource() {
         var allImages = arrayOf(
             R.drawable.manzara1,
             R.drawable.manzara2,
@@ -108,8 +108,11 @@ class PlaceholderFragment : Fragment() {
             "Kedi"
         )
         for (i in 0.until(allImages.size)) {
-            var addedAnimal = ProductItem(animalName[i], allImages[i])
-            allItem.add(addedAnimal)
+            var addedAnimal = ProductItem(
+                animalName[i],
+                allImages[i]
+            )
+            allProduct.add(addedAnimal)
         }
     }
 

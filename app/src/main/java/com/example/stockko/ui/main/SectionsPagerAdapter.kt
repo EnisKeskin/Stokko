@@ -23,7 +23,9 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         return PlaceholderFragment.newInstance(
             position + 1,
-            context.resources.getString(TAB_TITLES[position])
+            context.resources.getString(
+                TAB_TITLES[position]
+            )
         )
     }
 
@@ -31,4 +33,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         // Show 2 total pages.
         return 2
     }
+
+
 }
