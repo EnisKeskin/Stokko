@@ -2,16 +2,19 @@ package com.example.stockko
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
+import android.view.Menu
+import android.widget.SearchView
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.stockko.ui.main.ProductItem
-import com.example.stockko.ui.main.ProductRecyclerViewAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.stockko.product.ProductItem
+import com.example.stockko.product.ProductRecyclerViewAdapter
+import com.example.stockko.ui.main.PlaceholderFragment
 import com.example.stockko.ui.main.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.simple_view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +28,23 @@ class MainActivity : AppCompatActivity() {
 
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-    }
 
+        searchViewProduct.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val recyclerView: RecyclerView = viewPager.findViewById(R.id.recyclerViewItem)
+                val myadapter = recyclerView.adapter as ProductRecyclerViewAdapter
+                myadapter.myFilter.filter(newText)
+
+                return true
+            }
+
+        })
+
+    }
 
 }
 
