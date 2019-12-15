@@ -16,34 +16,39 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.simple_view.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+
+    lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
 
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+    }
 
-        searchViewProduct.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        var searchItem = menu?.findItem(R.id.searchProduct)
+        var searchView = searchItem?.actionView as SearchView
+        searchView.setOnQueryTextListener(this)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val recyclerView: RecyclerView = viewPager.findViewById(R.id.recyclerViewItem)
-                val myadapter = recyclerView.adapter as ProductRecyclerViewAdapter
-                myadapter.myFilter.filter(newText)
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
 
-                return true
-            }
-
-        })
-
+    override fun onQueryTextChange(newText: String?): Boolean {
+        val recyclerView: RecyclerView = viewPager.findViewById(R.id.recyclerViewItem)
+        val myadapter = recyclerView.adapter as ProductRecyclerViewAdapter
+        myadapter.myFilter.filter(newText)
+        return true
     }
 
 }

@@ -14,4 +14,9 @@
     <string name="magazaAdresi">Mağaza Adersi</string>
     <string name="magazaAdi">Mağaza Adı</string>
     <string name="kaydol">Kaydol</string>
+    <string name="urun_id">Ürün ID:</string>
+    <string name="urun_ad">Ürün Adı:</string>
+    <string name="urun_adeti">Ürün Adeti:</string>
+    <string name="urun_detay">Ürün Detay:</string>
+    <string name="saveProduct">Kaydet</string>
 </resources>

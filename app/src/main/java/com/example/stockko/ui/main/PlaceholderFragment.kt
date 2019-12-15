@@ -3,57 +3,63 @@ package com.example.stockko.ui.main
 import android.view.View
 import android.view.ViewGroup
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.stockko.R
 import com.example.stockko.product.ProductItem
 import com.example.stockko.product.ProductRecyclerViewAdapter
-import kotlinx.android.synthetic.main.activity_main.*
 
-
+//PlaceholderFragment yani tab ile ilgili iç işlemlerin gerçekleştiği yer
 class PlaceholderFragment : Fragment() {
     private var allProduct = ArrayList<ProductItem>()
     lateinit var myAdapter: ProductRecyclerViewAdapter
-
+    //nesnelerin oluştuğu yer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    //nesnelerin görüntülerinin oluştuğu yer
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        //fragment_main yani recyclerView olduğu kısım inflater yani o sayfaya bir dış kaynak olarak eklenir
         val root = inflater.inflate(R.layout.fragment_main, container, false)
-
-        var position = (arguments?.getString(ARG_SECTION_TITLE) ?: 1)
-
+        //pozisyonu yani hangi pozisyonda olduğunu örnekmek için örnektir veritabını eklenince daha düzgün kodu yazılacak
+        val position = (arguments?.getString(ARG_SECTION_TITLE) ?: 1)
+        //sadece verilere ulaşıp ulaşamadığımızın kontrolü
         when (position) {
             "Cute" -> {
                 fillDataSource()
             }
-            "aysegul" -> {
+            "ayşegül" -> {
 
             }
         }
+        //recyclerView adapterının tanımlanması bu sayede içine simple_view aktarılabilecek
         val recyclerView: RecyclerView = root.findViewById(R.id.recyclerViewItem)
         myAdapter = ProductRecyclerViewAdapter(allProduct)
         recyclerView.adapter = myAdapter
-
+        //recyclerView bir layout yani görüntü kazandırmak için bir çok görüntü bicimi var StaggeredHorizontal ..vb gibi
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
-
+        // bunun sayesinde viewPage icine verilerimiz aktarılıyor.
         return root
     }
+
+    //sectionPagerAdapter newInstance yani yeni bir örnek oluşturulduğu yer bu sayede bu sınıftan oluşturulan her şey
+    //tab icerisindeki viewPage içerisinden görüntülebiliyor
     companion object {
+        //bulunduğu konumdaki sayi
         private const val ARG_SECTION_NUMBER = "section_number"
+        //bulunduğu konumdaki ismi
         private const val ARG_SECTION_TITLE = "section_number"
 
         @JvmStatic
         fun newInstance(sectionNumber: Int, sectionTitle: String): PlaceholderFragment {
             return PlaceholderFragment().apply {
+                //arguments sayesinden instance oluşturulurken oluşturulan yerden tab title ve kaçıncı sırada olduğu bilgisini elde ediyoruz.
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                     putString(ARG_SECTION_TITLE, sectionTitle)
@@ -62,6 +68,7 @@ class PlaceholderFragment : Fragment() {
         }
     }
 
+    //örnek verilerin icerisinden barındıran fonksiyon
     fun fillDataSource() {
         var allImages = arrayOf(
             R.drawable.manzara1,
