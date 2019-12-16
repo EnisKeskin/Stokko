@@ -12,6 +12,7 @@ import com.example.stockko.product.ProductItem
 import com.example.stockko.product.ProductRecyclerViewAdapter
 
 //PlaceholderFragment yani tab ile ilgili iç işlemlerin gerçekleştiği yer
+@Suppress("DEPRECATION")
 class PlaceholderFragment : Fragment() {
     private var allProduct = ArrayList<ProductItem>()
     lateinit var myAdapter: ProductRecyclerViewAdapter
@@ -41,6 +42,14 @@ class PlaceholderFragment : Fragment() {
         val recyclerView: RecyclerView = root.findViewById(R.id.recyclerViewItem)
         myAdapter = ProductRecyclerViewAdapter(allProduct)
         recyclerView.adapter = myAdapter
+        //recyclerView optimizasyonu sağladık
+        recyclerView.setHasFixedSize(true)
+        //Cache tutacak boyut
+        recyclerView.setItemViewCacheSize(20)
+        //boyuttan alacağını açtık
+        recyclerView.isDrawingCacheEnabled = true
+        //Cachelenen cizimleri aldık
+        recyclerView.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
         //recyclerView bir layout yani görüntü kazandırmak için bir çok görüntü bicimi var StaggeredHorizontal ..vb gibi
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
