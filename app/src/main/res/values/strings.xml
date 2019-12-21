@@ -2,6 +2,9 @@
     <string name="app_name">Stockko</string>
     <string name="tab_text_1">Cute</string>
     <string name="tab_text_2">Ayşegül</string>
+    <string name="tab_text_3">Reis</string>
+    <string name="tab_text_4">Enis</string>
+    <string name="search">Search</string>
     <string name="rememberMe">Beni Hatırla</string>
     <string name="username">Kullanıcı Adı</string>
     <string name="password">Şifre</string>
@@ -19,4 +22,5 @@
     <string name="urun_adeti">Ürün Adeti:</string>
     <string name="urun_detay">Ürün Detay:</string>
     <string name="saveProduct">Kaydet</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
