@@ -1,6 +1,7 @@
 package com.example.stockko
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.transition.Transition
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +29,7 @@ import java.lang.Integer.max
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
-
+    lateinit var mydialog: Dialog
     private lateinit var viewPager: ViewPager
     lateinit var myadapter: ProductRecyclerViewAdapter
     lateinit var tabLayout: TabLayout
@@ -106,6 +108,15 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             }
 
         }
+        mydialog = Dialog(this)
+
+    }
+
+    fun SnowPopup(v : View){
+        val kaydet: Button
+        mydialog.setContentView(R.layout.custompopup)
+        kaydet =  mydialog.findViewById(R.id.kaydet)
+        mydialog.show()
 
     }
 
