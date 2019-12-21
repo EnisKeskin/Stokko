@@ -1,15 +1,22 @@
 package com.example.stockko.ui.main
 
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.example.stockko.R
 import com.example.stockko.product.ProductItem
 import com.example.stockko.product.ProductRecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_detail.*
+import kotlin.Any as Any1
+
 
 //PlaceholderFragment yani tab ile ilgili iç işlemlerin gerçekleştiği yer
 @Suppress("DEPRECATION")
@@ -19,6 +26,9 @@ class PlaceholderFragment : Fragment() {
     //nesnelerin oluştuğu yer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        myAdapter = ProductRecyclerViewAdapter(allProduct)
+        //myAdapter.notifyDataSetChanged()
+        // myAdapter.setHasStableIds(true)
     }
 
     //nesnelerin görüntülerinin oluştuğu yer
@@ -28,21 +38,27 @@ class PlaceholderFragment : Fragment() {
         //fragment_main yani recyclerView olduğu kısım inflater yani o sayfaya bir dış kaynak olarak eklenir
         val root = inflater.inflate(R.layout.fragment_main, container, false)
         //pozisyonu yani hangi pozisyonda olduğunu örnekmek için örnektir veritabını eklenince daha düzgün kodu yazılacak
-        val position = (arguments?.getString(ARG_SECTION_TITLE) ?: 1)
+        val positionName = (arguments?.getString(ARG_SECTION_TITLE) ?: 0)
         //sadece verilere ulaşıp ulaşamadığımızın kontrolü
-        when (position) {
+        when (positionName) {
             "Cute" -> {
-                fillDataSource()
+                fillDataSource(positionName.toString())
             }
-            "ayşegül" -> {
-
+            "Ayşegül" -> {
+                fillDataSource(positionName.toString())
+            }
+            "Reis" -> {
+                fillDataSource(positionName.toString())
+            }
+            "Search" -> {
+                fillDataSource(positionName.toString())
             }
         }
         //recyclerView adapterının tanımlanması bu sayede içine simple_view aktarılabilecek
         val recyclerView: RecyclerView = root.findViewById(R.id.recyclerViewItem)
-        myAdapter = ProductRecyclerViewAdapter(allProduct)
         recyclerView.adapter = myAdapter
-        //recyclerView optimizasyonu sağladık
+        println("Rec oldu")
+        //recyclerView optimizasyonu sağlamak için fixedsize yani boyutunu sabit tutmayı aktif hale getirdik
         recyclerView.setHasFixedSize(true)
         //Cache tutacak boyut
         recyclerView.setItemViewCacheSize(20)
@@ -77,8 +93,12 @@ class PlaceholderFragment : Fragment() {
         }
     }
 
+
     //örnek verilerin icerisinden barındıran fonksiyon
-    fun fillDataSource() {
+    fun fillDataSource(name: String) {
+        if (allProduct.isNotEmpty()) {
+            allProduct = ArrayList()
+        }
         var allImages = arrayOf(
             R.drawable.manzara1,
             R.drawable.manzara2,
@@ -123,6 +143,7 @@ class PlaceholderFragment : Fragment() {
             "Kedi",
             "Kedi"
         )
+        animalName[1] = name
         for (i in 0.until(allImages.size)) {
             var addedAnimal = ProductItem(
                 animalName[i],
@@ -131,5 +152,6 @@ class PlaceholderFragment : Fragment() {
             allProduct.add(addedAnimal)
         }
     }
+
 
 }

@@ -18,7 +18,9 @@ import kotlinx.android.synthetic.main.simple_view.view.*
 class ProductRecyclerViewAdapter(private var allProduct: ArrayList<ProductItem>) :
     RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductViewHolder>(), Filterable {
     //filter nesnesini tanımlıyoruz böylece FilterHelper kullanabiliyoruz
-    var myFilter: FilterHelper = FilterHelper(allProduct, this)
+
+    var myFilter: FilterHelper = FilterHelper(allProduct, this@ProductRecyclerViewAdapter)
+
     //Burda hem RecyclerView içerisinde bulunacak itemi hemde metodları tanımlayabiliyoruz her bir nesnede tekrar çalışır
     inner class ProductViewHolder(simpleView: View) : RecyclerView.ViewHolder(simpleView) {
         var simpleItem = simpleView as CardView
@@ -35,29 +37,33 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<ProductItem>)
 
         }
     }
+
     //oluşturduğumuz item yani tek bir satırın oluşturulduğu yer
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflate = LayoutInflater.from(parent.context)
         val simpleItem = inflate.inflate(R.layout.simple_view, parent, false)
         return ProductViewHolder(simpleItem)
     }
+
     //kaç tane item gözükeceği yer
     override fun getItemCount(): Int {
         return allProduct.size
     }
+
     //hey bir item'in oluştuktan sonraki olaylarının oluştuğu yer bu sayede her bir item'a tek tek ulaşabiliyoruz.
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val productCreatedAtThatMoment = allProduct[position]
         holder.setData(productCreatedAtThatMoment, position)
     }
+
     //FilterHelper kullandığı metod bu sayede filterelenen veriler geliyor
     fun setFilter(arrayList: ArrayList<ProductItem>) {
         allProduct = arrayList
     }
+
     //hangi filter kullanıldığının belirtildiği yer
     override fun getFilter(): Filter {
         return myFilter
     }
-
 
 }

@@ -6,7 +6,7 @@ import android.widget.Filter
 class FilterHelper(
     private var allProduct: ArrayList<ProductItem>,
     var adapter: ProductRecyclerViewAdapter
-) :
+    ) :
     Filter() {
     //Filtrelemenin yapıldığı yer burda filtreleme şartlarını belirterek direkt olarak veri işlenir.
     override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -31,6 +31,7 @@ class FilterHelper(
 
         return result
     }
+
     //işlenen veri burda adapter gönderilir setFilter ProductRecyclerViewAdapter bulunan bir fonksiyondur.
     //notifyDataSetChanged ise adapter değiştiğine dair bilgi verir.
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
