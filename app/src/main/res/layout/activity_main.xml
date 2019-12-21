@@ -49,6 +49,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnBarkod"
+            android:onClick="SnowPopup"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginBottom="16dp"
