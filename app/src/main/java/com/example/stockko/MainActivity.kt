@@ -27,12 +27,13 @@ import java.lang.Integer.max
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+
     lateinit var mydialog: Dialog
     private lateinit var viewPager: ViewPager
     lateinit var myadapter: ProductRecyclerViewAdapter
     lateinit var tabLayout: TabLayout
-    var tabsPosition: Int = 0
     private lateinit var sectionsPagerAdapter: SectionsPagerAdapter
+
     @SuppressLint("RestrictedApi", "InflateParams")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,10 +114,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     }
 
-    fun SnowPopup(v : View){
+    fun SnowPopup(v: View) {
         val kaydet: Button
         mydialog.setContentView(R.layout.custompopup)
-        kaydet =  mydialog.findViewById(R.id.kaydet)
+        kaydet = mydialog.findViewById(R.id.kaydet)
         mydialog.show()
 
     }
@@ -135,7 +136,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        println("reisssssssssss")
         return super.onOptionsItemSelected(item)
     }
 
