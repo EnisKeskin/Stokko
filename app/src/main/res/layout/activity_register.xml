@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/kullanici_adi"
+        android:id="@+id/etAd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
@@ -18,62 +18,62 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/sifre"
+        android:id="@+id/etSifre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/kayitSifre"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/mail"
-        app:layout_constraintTop_toBottomOf="@+id/mail" />
+        app:layout_constraintEnd_toEndOf="@+id/etMail"
+        app:layout_constraintTop_toBottomOf="@+id/etMail" />
 
     <EditText
-        android:id="@+id/sifre_tekrar"
+        android:id="@+id/etSifreTekrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/kayitsifretekrar"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/sifre"
-        app:layout_constraintTop_toBottomOf="@+id/sifre" />
+        app:layout_constraintStart_toStartOf="@+id/etSifre"
+        app:layout_constraintTop_toBottomOf="@+id/etSifre" />
 
     <EditText
-        android:id="@+id/magaza_adresi"
+        android:id="@+id/etMagazaAdres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/magazaAdresi"
         android:inputType="textPostalAddress"
-        app:layout_constraintStart_toStartOf="@+id/magaza_adi"
-        app:layout_constraintTop_toBottomOf="@+id/magaza_adi" />
+        app:layout_constraintStart_toStartOf="@+id/etMagazaAdi"
+        app:layout_constraintTop_toBottomOf="@+id/etMagazaAdi" />
 
     <EditText
-        android:id="@+id/mail"
+        android:id="@+id/etMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/kullanici_adi"
-        app:layout_constraintTop_toBottomOf="@+id/kullanici_adi" />
+        app:layout_constraintStart_toStartOf="@+id/etAd"
+        app:layout_constraintTop_toBottomOf="@+id/etAd" />
 
     <EditText
-        android:id="@+id/magaza_adi"
+        android:id="@+id/etMagazaAdi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/magazaAdi"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/sifre_tekrar"
-        app:layout_constraintTop_toBottomOf="@+id/sifre_tekrar" />
+        app:layout_constraintEnd_toEndOf="@+id/etSifreTekrar"
+        app:layout_constraintTop_toBottomOf="@+id/etSifreTekrar" />
 
     <Button
-        android:id="@+id/kaydol"
+        android:id="@+id/btnKaydol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -81,7 +81,7 @@
         android:background="#F44336"
         android:text="@string/kaydol"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="@+id/magaza_adresi"
-        app:layout_constraintTop_toBottomOf="@+id/magaza_adresi" />
+        app:layout_constraintEnd_toEndOf="@+id/etMagazaAdres"
+        app:layout_constraintTop_toBottomOf="@+id/etMagazaAdres" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
