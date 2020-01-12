@@ -6,9 +6,6 @@ import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.transition.Fade
-import android.transition.Transition
-import android.transition.TransitionManager
 import android.util.Log
 import android.view.*
 import android.widget.Button
@@ -22,6 +19,7 @@ import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import java.lang.Integer.max
@@ -40,7 +38,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
 
+        myRef.setValue("Hello, World!")
         var inflater = LayoutInflater.from(this)
 
         //SectionsPagerAdapter oluşturulduğu kısım oluşturulduğu yer
@@ -76,7 +77,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         }
 
         tabLayout.setupWithViewPager(viewPager)
-
+        //tıkladığım tabloların eski ve yeni halini bana veriyor bu sayade verileri istediğim yere yazdırabiliyorum.
         tabLayout.viewTreeObserver.addOnGlobalFocusChangeListener { oldFocus, newFocus ->
             val floatButton: FloatingActionButton = btnBarkod
             if (newFocus != null) {

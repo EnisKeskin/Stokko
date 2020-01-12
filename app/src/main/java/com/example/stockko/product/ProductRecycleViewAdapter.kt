@@ -26,9 +26,9 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<ProductItem>)
         var simpleItem = simpleView as CardView
         var simpleName = simpleItem.tvProductName
         var simpleImage = simpleItem.imgProduct
-        fun setData(animalCreatedAtThatMoment: ProductItem, position: Int) {
-            simpleName.text = animalCreatedAtThatMoment.nameOfTheProduct
-            simpleImage.setImageResource(animalCreatedAtThatMoment.productImage)
+        fun setData(productCreatedAtThatMoment: ProductItem, position: Int) {
+            simpleName.text = productCreatedAtThatMoment.nameOfTheProduct
+           // simpleImage.setImageResource(productCreatedAtThatMoment.productImage)
 
             simpleItem.setOnClickListener { v ->
                 val intent = Intent(v.context, DetailActivity::class.java)

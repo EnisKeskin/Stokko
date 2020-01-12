@@ -1,5 +1,6 @@
 package com.example.stockko.product
 
+import android.annotation.SuppressLint
 import android.widget.Filter
 
 @Suppress("UNCHECKED_CAST")
@@ -9,6 +10,7 @@ class FilterHelper(
     ) :
     Filter() {
     //Filtrelemenin yapıldığı yer burda filtreleme şartlarını belirterek direkt olarak veri işlenir.
+    @SuppressLint("DefaultLocale")
     override fun performFiltering(constraint: CharSequence?): FilterResults {
         var result = FilterResults()
 
