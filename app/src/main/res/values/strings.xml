@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Stockko</string>
-    <string name="tab_text_1">Cute</string>
-    <string name="tab_text_2">Ayşegül</string>
-    <string name="tab_text_3">Reis</string>
-    <string name="tab_text_4">Enis</string>
+    <string name="tab_text_1">Anasayfa</string>
     <string name="search">Search</string>
     <string name="rememberMe">Beni Hatırla</string>
     <string name="username">Kullanıcı Adı</string>

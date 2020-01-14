@@ -1,36 +1,57 @@
 package com.example.stockko.ui.main
 
 import android.content.Context
-import android.util.Log
-import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.stockko.R
+import com.example.stockko.dataClass.Category
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.scandit.datacapture.core.internal.sdk.await
+import kotlin.coroutines.suspendCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
-private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2,
-    R.string.tab_text_3,
-    R.string.tab_text_4
-)
+private val TAB_TITLES = ArrayList<String>()
+private val TAB_TITLES_ID = ArrayList<Int>()
 
 //tab işlemlerinin gerçekleştiği yer
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "UNCHECKED_CAST")
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
     init {
-        println("çalıştı")
+
+        TAB_TITLES.add(context.resources.getString(R.string.tab_text_1))
+        TAB_TITLES_ID.add(0)
+        val refarance = FirebaseDatabase.getInstance().reference
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        println(userId)
+        val query = FirebaseDatabase.getInstance().reference.child("Product")
+            .child(userId.toString())
+            .child("category")
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            //iptal olma durumunda
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            //verinin değiştiği yani verinin alındığı yer
+            override fun onDataChange(p0: DataSnapshot) {
+                val value = p0.getValue(Category::class.java)
+                TAB_TITLES.add(value!!.name.toString())
+                value.id?.let { TAB_TITLES_ID.add(it) }
+                notifyDataSetChanged()
+            }
+        })
     }
+
     //tab sayfasının başlıklarının yazıldığı yer
-    //context.resources.getString alamasının nedeni Tab_Title bir strings icinde tanımlı tab_text_1,tab_text_2 gibi veriler olması
-    //veritabanında tanımlarken herhangi bir sıkıntı olmayacak.
     override fun getPageTitle(position: Int): CharSequence? {
-        //title girileceği yer
-        println("title girildi")
-        return context.resources.getString(TAB_TITLES[position])
+        return TAB_TITLES[position]
     }
 
     //her tab sayfasının altına hangi viewPage ekleneceği yer PlaceHolderFragment yaptığımız kısım
@@ -38,10 +59,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         println("item girildi")
         //yeni bir instance oluşturuluyor.
         return PlaceholderFragment.newInstance(
-            position,
-            context.resources.getString(
-                TAB_TITLES[position]
-            )
+            TAB_TITLES[position],
+            TAB_TITLES_ID[position]
         )
     }
 
@@ -50,4 +69,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         return TAB_TITLES.size
     }
 
+}
+
+interface Operation<T> {
+    fun performAsync(callback: (T?, Throwable?) -> Unit)
 }
