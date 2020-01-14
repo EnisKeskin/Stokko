@@ -2,6 +2,7 @@ package com.example.stockko.product
 
 import android.annotation.SuppressLint
 import android.widget.Filter
+import com.example.stockko.dataClass.ProductItem
 
 @Suppress("UNCHECKED_CAST")
 class FilterHelper(

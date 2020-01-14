@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stockko.DetailActivity
 import com.example.stockko.R
+import com.example.stockko.dataClass.ProductItem
 import kotlinx.android.synthetic.main.simple_view.view.*
 
 //Burda recyclerView adapterının yazıldığı yer.

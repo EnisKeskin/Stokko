@@ -18,37 +18,62 @@ class LoginActivity : AppCompatActivity() {
 
         tvKayitOl.setOnClickListener {
 
-            var intent = Intent(this,RegisterActivity::class.java)
+            var intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
         btnGirisYap.setOnClickListener {
+            FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword("eniskeskin61@hotmail.com", "123456")
+                .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
+                    override fun onComplete(p0: Task<AuthResult>) = if (p0.isSuccessful) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Başarılı Giriş." + FirebaseAuth.getInstance().currentUser?.email,
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-            if (etSifre.text.isNotEmpty() && etSifre.text.isNotEmpty()){
+                        val intent1 = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent1)
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Hatalı Giriş" + p0.exception?.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(etMail.text.toString(),etSifre.text.toString())
-                    .addOnCompleteListener(object:OnCompleteListener<AuthResult>{
-                        override fun onComplete(p0: Task<AuthResult>) {
+                    }
 
-                            if(p0.isSuccessful){
-                                Toast.makeText(this@LoginActivity, "Başarılı Giriş."+FirebaseAuth.getInstance().currentUser?.email,Toast.LENGTH_SHORT).show()
-                                var intent1 = Intent(this@LoginActivity,MainActivity::class.java)
-                                startActivity(intent1)
-                            }
+                })
+//            if (etSifre.text.isNotEmpty() && etSifre.text.isNotEmpty()){
+//
+//                FirebaseAuth.getInstance().signInWithEmailAndPassword(etMail.text.toString(),etSifre.text.toString())
+//                    .addOnCompleteListener(object:OnCompleteListener<AuthResult>{
+//                        override fun onComplete(p0: Task<AuthResult>) {
+//
+//                            if(p0.isSuccessful){
+//                                Toast.makeText(this@LoginActivity, "Başarılı Giriş."+FirebaseAuth.getInstance().currentUser?.email,Toast.LENGTH_SHORT).show()
+//                                var intent1 = Intent(this@LoginActivity,MainActivity::class.java)
+//                                startActivity(intent1)
+//                            }
+//
+//                            else{
+//                                Toast.makeText(this@LoginActivity, "Hatalı Giriş"+ p0.exception?.message,Toast.LENGTH_SHORT).show()
+//
+//                            }
+//                        }
+//
+//                    })
+//
+//            }
+//            else{
+//                Toast.makeText(this@LoginActivity, "Boş alanları doldurunuz",Toast.LENGTH_SHORT).show()
+//
+//            }
 
-                            else{
-                                Toast.makeText(this@LoginActivity, "Hatalı Giriş"+ p0.exception?.message,Toast.LENGTH_SHORT).show()
-
-                            }
-                        }
-
-                    })
-
-            }
-            else{
-                Toast.makeText(this@LoginActivity, "Boş alanları doldurunuz",Toast.LENGTH_SHORT).show()
-
-            }
         }
+
     }
+
+
 }

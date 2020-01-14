@@ -1,13 +1,9 @@
-package com.example.stockko.Search
+package com.example.stockko.search
 
 import com.example.stockko.ui.main.PlaceholderFragment
 import android.content.Context
-import android.util.Log
-import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.stockko.R
 
@@ -31,10 +27,9 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         //yeni bir instance oluşturuluyor.
         return PlaceholderFragment.newInstance(
-            position,
             context.resources.getString(
                 TAB_TITLES[position]
-            )
+            ),0
         )
     }
 

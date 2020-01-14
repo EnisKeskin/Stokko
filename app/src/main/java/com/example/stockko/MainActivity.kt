@@ -14,12 +14,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.example.stockko.product.ProductItem
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import java.lang.Integer.max
@@ -39,10 +37,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
 
-        myRef.setValue("Hello, World!")
         var inflater = LayoutInflater.from(this)
 
         //SectionsPagerAdapter oluşturulduğu kısım oluşturulduğu yer
@@ -79,14 +74,14 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         tabLayout.setupWithViewPager(viewPager)
         //tıkladığım tabloların eski ve yeni halini bana veriyor bu sayade verileri istediğim yere yazdırabiliyorum.
-        tabLayout.viewTreeObserver.addOnGlobalFocusChangeListener { oldFocus, newFocus ->
+        tabLayout.viewTreeObserver.addOnGlobalFocusChangeListener { _, newFocus ->
             val floatButton: FloatingActionButton = btnBarkod
             if (newFocus != null) {
                 floatButton.visibility = (View.GONE)
                 mainConstraintLayout.appBarLayout.visibility = View.GONE
                 //searcview için yenibir SectionsPagerAdapter yazarak hali hazırda olan recyclerView kullanabiliyorum.
                 var sectionsPagerAdapter =
-                    com.example.stockko.Search.SectionsPagerAdapter(
+                    com.example.stockko.search.SectionsPagerAdapter(
                         this,
                         supportFragmentManager
                     )
@@ -113,8 +108,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         mydialog = Dialog(this)
 
     }
-
-    fun SnowPopup(v: View) {
+    //v parametre olarak geliyor
+    fun SnowPopup() {
         val kaydet: Button
         mydialog.setContentView(R.layout.custompopup)
         kaydet = mydialog.findViewById(R.id.kaydet)
@@ -147,13 +142,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     //Text herhangi bir harf yazıldığında gerçekleşen kısım
     override fun onQueryTextChange(newText: String?): Boolean {
-        var text = newText?.toLowerCase()
-        var searchList = ArrayList<ProductItem>()
+        //var text = newText?.toLowerCase()
+        //var searchList = ArrayList<ProductItem>()
         //filterelemeyi recycler isteğimiz için önce recyclerView alıyoruz
         // myadapter = viewPager.findViewById<RecyclerView>(R.id.recyclerViewItem).adapter as ProductRecyclerViewAdapter
 
         //icindeki adapterdan myfilter ulaşarak yazılan yazıyı gönderiyoruz.
-        var tabs = findViewById<TabLayout>(R.id.tabs)
+       // var tabs = findViewById<TabLayout>(R.id.tabs)
 
         myadapter =
             viewPager.findViewById<RecyclerView>(R.id.recyclerViewItem).adapter as ProductRecyclerViewAdapter
