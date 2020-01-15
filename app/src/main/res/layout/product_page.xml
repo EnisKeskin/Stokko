@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spnCategory"
+        android:layout_width="227dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvCategory"
+        app:layout_constraintTop_toTopOf="@+id/tvCategory" />
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="128dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="220dp"
+        android:text="Kategori"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="125dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="İsim"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="205dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/spnCategory"
+        app:layout_constraintTop_toTopOf="@+id/tvName" />
+
+    <TextView
+        android:id="@+id/tvPiece"
+        android:layout_width="118dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:text="Adet"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <EditText
+        android:id="@+id/etPiece"
+        android:layout_width="207dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etName"
+        app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+    <TextView
+        android:id="@+id/tvDetail"
+        android:layout_width="119dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="24dp"
+        android:text="Detay"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvPiece"
+        app:layout_constraintTop_toBottomOf="@+id/tvPiece" />
+
+    <EditText
+        android:id="@+id/etDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etPiece"
+        app:layout_constraintTop_toBottomOf="@+id/etPiece" />
+
+    <Button
+        android:id="@+id/btnProductAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:text="Ürün Ekle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetail"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="229dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="120dp"
+        android:text="Ürün Ekle"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
