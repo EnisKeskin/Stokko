@@ -2,27 +2,29 @@ package com.example.stockko.product
 
 import android.annotation.SuppressLint
 import android.widget.Filter
+import com.example.stockko.dataClass.Product
 import com.example.stockko.dataClass.ProductItem
+import com.example.stockko.dataClass.Products
 
 @Suppress("UNCHECKED_CAST")
 class FilterHelper(
-    private var allProduct: ArrayList<ProductItem>,
+    private var allProduct: ArrayList<Products>,
     var adapter: ProductRecyclerViewAdapter
-    ) :
+) :
     Filter() {
     //Filtrelemenin yapıldığı yer burda filtreleme şartlarını belirterek direkt olarak veri işlenir.
     @SuppressLint("DefaultLocale")
     override fun performFiltering(constraint: CharSequence?): FilterResults {
-        var result = FilterResults()
+        val result = FilterResults()
 
         if (constraint != null && constraint.isNotEmpty()) {
-            var wantedName = constraint.toString().toLowerCase()
-            var matched = ArrayList<ProductItem>()
+            val wantedName = constraint.toString().toLowerCase()
+            val matched = ArrayList<Products>()
 
-            for (dost in allProduct) {
-                var name = dost.nameOfTheProduct.toLowerCase()
-                if (name.contains(wantedName)) {
-                    matched.add(dost)
+            for (product in allProduct) {
+                val name = product.name
+                if (name!!.contains(wantedName)) {
+                    matched.add(product)
                 }
             }
             result.values = matched
@@ -38,7 +40,7 @@ class FilterHelper(
     //işlenen veri burda adapter gönderilir setFilter ProductRecyclerViewAdapter bulunan bir fonksiyondur.
     //notifyDataSetChanged ise adapter değiştiğine dair bilgi verir.
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-        adapter.setFilter(results?.values as ArrayList<ProductItem>)
+        adapter.setFilter(results?.values as ArrayList<Products>)
         adapter.notifyDataSetChanged()
     }
 
