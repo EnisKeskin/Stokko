@@ -5,24 +5,26 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="196dp"
-        android:hint="Kategori Adı"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
-        android:text="Kategori  Ekle"
+        android:onClick="btnCategoryAdd"
+        android:text="Kategori Ekle"
         app:layout_constraintEnd_toEndOf="@+id/tvCategory"
         app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
+
+    <EditText
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="256dp"
+        android:ems="10"
+        android:hint="Kategory Adı"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

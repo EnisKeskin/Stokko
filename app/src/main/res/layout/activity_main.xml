@@ -25,7 +25,8 @@
             android:background="?attr/colorPrimary"
             app:tabGravity="fill"
             app:tabMaxWidth="0dp"
-            app:tabMode="scrollable" />
+            app:tabMode="scrollable"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

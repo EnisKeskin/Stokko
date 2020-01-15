@@ -10,13 +10,15 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stockko.DetailActivity
 import com.example.stockko.R
+import com.example.stockko.dataClass.Product
 import com.example.stockko.dataClass.ProductItem
+import com.example.stockko.dataClass.Products
 import kotlinx.android.synthetic.main.simple_view.view.*
 
 //Burda recyclerView adapterının yazıldığı yer.
 //ProductViewHolder ise nesnemizin alt klass olarak adapter verin veri türüdür
 //Filterable ise Filtrelemek istediğimiz verilerin burda olduğundan buraya bir implement edilen bir metodtur
-class ProductRecyclerViewAdapter(private var allProduct: ArrayList<ProductItem>) :
+class ProductRecyclerViewAdapter(private var allProduct: ArrayList<Products>) :
     RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductViewHolder>(), Filterable {
     //filter nesnesini tanımlıyoruz böylece FilterHelper kullanabiliyoruz
 
@@ -27,8 +29,8 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<ProductItem>)
         var simpleItem = simpleView as CardView
         var simpleName = simpleItem.tvProductName
         var simpleImage = simpleItem.imgProduct
-        fun setData(productCreatedAtThatMoment: ProductItem, position: Int) {
-            simpleName.text = productCreatedAtThatMoment.nameOfTheProduct
+        fun setData(productCreatedAtThatMoment: Products, position: Int) {
+            simpleName.text = productCreatedAtThatMoment.name
            // simpleImage.setImageResource(productCreatedAtThatMoment.productImage)
 
             simpleItem.setOnClickListener { v ->
@@ -58,7 +60,7 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<ProductItem>)
     }
 
     //FilterHelper kullandığı metod bu sayede filterelenen veriler geliyor
-    fun setFilter(arrayList: ArrayList<ProductItem>) {
+    fun setFilter(arrayList: ArrayList<Products>) {
         allProduct = arrayList
     }
 

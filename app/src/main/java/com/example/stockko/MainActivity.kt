@@ -108,14 +108,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         mydialog = Dialog(this)
 
     }
-    //v parametre olarak geliyor
-    fun SnowPopup() {
-        val kaydet: Button
-        mydialog.setContentView(R.layout.custompopup)
-        kaydet = mydialog.findViewById(R.id.kaydet)
-        mydialog.show()
-
-    }
 
     //menunun oluşturulduğu yer.
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -142,19 +134,17 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     //Text herhangi bir harf yazıldığında gerçekleşen kısım
     override fun onQueryTextChange(newText: String?): Boolean {
-        //var text = newText?.toLowerCase()
-        //var searchList = ArrayList<ProductItem>()
-        //filterelemeyi recycler isteğimiz için önce recyclerView alıyoruz
-        // myadapter = viewPager.findViewById<RecyclerView>(R.id.recyclerViewItem).adapter as ProductRecyclerViewAdapter
-
-        //icindeki adapterdan myfilter ulaşarak yazılan yazıyı gönderiyoruz.
-       // var tabs = findViewById<TabLayout>(R.id.tabs)
-
         myadapter =
             viewPager.findViewById<RecyclerView>(R.id.recyclerViewItem).adapter as ProductRecyclerViewAdapter
-        Log.e("dış katman", "$myadapter")
         myadapter.myFilter.filter(newText)
         return true
+    }
+
+    fun SnowPopup(view: View) {
+        val kaydet: Button
+        mydialog.setContentView(R.layout.custompopup)
+        kaydet = mydialog.findViewById(R.id.kaydet)
+        mydialog.show()
     }
 
 }
