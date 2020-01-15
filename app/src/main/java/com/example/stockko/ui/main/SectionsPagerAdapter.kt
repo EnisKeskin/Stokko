@@ -7,13 +7,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.stockko.R
 import com.example.stockko.dataClass.Category
 import com.example.stockko.dataClass.Titles
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.scandit.datacapture.core.internal.sdk.await
-import kotlin.coroutines.suspendCoroutine
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 private val TAB_TITLES = ArrayList<Category>()
 private val firstTitle = Category()
@@ -23,7 +16,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
     init {
         firstTitle.name = context.resources.getString(R.string.tab_text_1)
-        firstTitle.id = 0
+        firstTitle.key = "0"
         TAB_TITLES.add(firstTitle)
         TAB_TITLES.addAll(Titles.getTitle())
         Titles.getTitle().forEach {
