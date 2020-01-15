@@ -10,36 +10,59 @@ import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.internal.NavigationMenuView
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_main.view.*
 import java.lang.Integer.max
 
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
+    NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var mydialog: Dialog
     private lateinit var viewPager: ViewPager
     lateinit var myadapter: ProductRecyclerViewAdapter
     lateinit var tabLayout: TabLayout
     private lateinit var sectionsPagerAdapter: SectionsPagerAdapter
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navView: NavigationView
+    lateinit var toolbar: Toolbar
 
     @SuppressLint("RestrictedApi", "InflateParams")
     @RequiresApi(Build.VERSION_CODES.N)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, 0, 0
+        )
 
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
         var inflater = LayoutInflater.from(this)
-
         //SectionsPagerAdapter oluşturulduğu kısım oluşturulduğu yer
         sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         viewPager = findViewById(R.id.view_pager)
@@ -48,7 +71,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         //tablara viewPage eklendiği kısım
         tabLayout = findViewById(R.id.tabs)
         //tabLayoutları boyutunu tam ekrana göre ayarlayan çoğaldıkca boyutu ona göre ayarlayıp düzenli bir görüntü oluşturuyor
-
         tabLayout.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
             //toplam boyutu tanımlanıyor
             var totalWidth = 0
@@ -78,7 +100,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             val floatButton: FloatingActionButton = btnBarkod
             if (newFocus != null) {
                 floatButton.visibility = (View.GONE)
-                mainConstraintLayout.appBarLayout.visibility = View.GONE
                 //searcview için yenibir SectionsPagerAdapter yazarak hali hazırda olan recyclerView kullanabiliyorum.
                 var sectionsPagerAdapter =
                     com.example.stockko.search.SectionsPagerAdapter(
@@ -95,7 +116,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
 
             } else {
-                mainConstraintLayout.appBarLayout.visibility = View.VISIBLE
                 viewPager.adapter = sectionsPagerAdapter
                 //SectionsPagerAdapter oluşturulduğu kısım oluşturulduğu yer
                 Handler().postDelayed({
@@ -105,6 +125,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             }
 
         }
+
         mydialog = Dialog(this)
 
     }
@@ -116,14 +137,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val searchItem = menu?.findItem(R.id.searchProduct)
         val searchView = searchItem?.actionView as SearchView
         //searcView text değişiklik olduğunda tektiklenen kısım
-
-
         searchView.setOnQueryTextListener(this)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
     }
 
     //false olasının nedeni searcView gönderildiğinde aramayapmasını değil.
@@ -145,6 +160,28 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         mydialog.setContentView(R.layout.custompopup)
         kaydet = mydialog.findViewById(R.id.kaydet)
         mydialog.show()
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when (p0.itemId) {
+            R.id.nav_profile -> {
+                Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_messages -> {
+                Toast.makeText(this, "Messages clicked", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_friends -> {
+                Toast.makeText(this, "Friends clicked", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_update -> {
+                Toast.makeText(this, "Update clicked", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_logout -> {
+                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 
 }

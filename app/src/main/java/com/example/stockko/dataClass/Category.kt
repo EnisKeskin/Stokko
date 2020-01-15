@@ -1,11 +1,11 @@
 package com.example.stockko.dataClass
 
 class Category {
-    var id: Int? = null
+    var key: String? = null
     var name: String? = null
 
-    constructor(id: Int?, name: String?) {
-        this.id = id
+    constructor(key: String?, name: String?) {
+        this.key = key
         this.name = name
     }
 

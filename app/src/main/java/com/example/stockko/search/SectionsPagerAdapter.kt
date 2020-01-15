@@ -15,7 +15,7 @@ private val TAB_TITLES = Category()
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentStatePagerAdapter(fm) {
     init {
-        TAB_TITLES.id = 0
+        TAB_TITLES.key = "0"
         TAB_TITLES.name = context.resources.getString(R.string.search)
     }
     //tab sayfasının başlıklarının yazıldığı yer
