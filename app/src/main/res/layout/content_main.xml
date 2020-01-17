@@ -77,7 +77,6 @@ a
             android:clickable="true"
             android:focusable="true"
             android:foregroundGravity="bottom|center"
-            android:onClick="SnowPopup"
             app:layout_constraintBottom_toBottomOf="@+id/view_pager"
             app:layout_constraintEnd_toEndOf="@+id/view_pager"
             app:layout_constraintStart_toStartOf="@+id/view_pager" />

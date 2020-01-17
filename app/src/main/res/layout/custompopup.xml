@@ -15,100 +15,31 @@
         tools:layout_editor_absoluteX="-72dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <TextView
-            android:id="@+id/barkodId"
-            android:layout_width="146dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="56dp"
-            android:hint="Buton Id"
-            android:textColor="@android:color/background_dark"
-            android:textColorHint="#141414"
-            android:textSize="20dp"
-            android:textStyle="bold"
+
+        <Button
+            android:id="@+id/btnProductAdd"
+            android:layout_width="202dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#692B16"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/btnProductSearch"
+            app:layout_constraintTop_toBottomOf="@+id/btnProductSearch"
+            tools:text="Ürün Ekle" />
+
+        <Button
+            android:id="@+id/btnProductSearch"
+            android:layout_width="201dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="136dp"
+            android:backgroundTint="#692B16"
+            android:text="Ürün Ara"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/kaydet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#692B16"
-            android:text="Kaydet"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4"
-            app:layout_constraintVertical_bias="0.163" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="148dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="160dp"
-            android:hint="Ürün Adı"
-            android:textColor="@android:color/background_light"
-            android:textColorHint="#070707"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/button3"
-            app:layout_constraintTop_toBottomOf="@+id/barkodId" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="142dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#692B16"
-            android:text="Resim Ekle"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="@+id/urunAdet"
-            app:layout_constraintTop_toBottomOf="@+id/urunAdet" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="152dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="12dp"
-            android:backgroundTint="#692B16"
-            android:text="Barkod"
-            android:textColor="@android:color/background_light"
-            app:layout_constraintBottom_toBottomOf="@+id/barkodId"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/barkodId" />
-
-        <TextView
-            android:id="@+id/urunMarka"
-            android:layout_width="146dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="16dp"
-            android:hint="Marka"
-            android:textColor="#ECEAE4"
-            android:textColorHighlight="#00161515"
-            android:textColorHint="#141414"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/urunAdet"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/urunAdet"
-            android:layout_width="145dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="16dp"
-            android:hint="Ürün Adeti"
-            android:textColor="#ECEAE4"
-            android:textColorHint="#020202"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/urunMarka" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
