@@ -5,7 +5,6 @@ object Titles {
     var titleArray: ArrayList<Category> = ArrayList()
 
     fun setTitle(titles: Category) {
-
         titleArray.add(titles)
     }
 
@@ -13,5 +12,8 @@ object Titles {
         return titleArray
     }
 
+    fun clearTitle(){
+        titleArray.clear()
+    }
 
 }

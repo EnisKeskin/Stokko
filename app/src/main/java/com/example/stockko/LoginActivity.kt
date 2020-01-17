@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.stockko.dataClass.Category
 import com.example.stockko.dataClass.Titles
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,18 +28,18 @@ class LoginActivity : AppCompatActivity() {
         btnGirisYap.setOnClickListener {
             FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword("eniskeskin61@hotmail.com", "123456")
-                .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
-                    override fun onComplete(p0: Task<AuthResult>) = if (p0.isSuccessful) {
+                .addOnCompleteListener { p0 ->
+                    if (p0.isSuccessful) {
                         Toast.makeText(
                             this@LoginActivity,
                             "Başarılı Giriş." + FirebaseAuth.getInstance().currentUser?.email,
                             Toast.LENGTH_SHORT
                         ).show()
-                        val refarance = FirebaseDatabase.getInstance().reference
+                        val refarence = FirebaseDatabase.getInstance().reference
 
                         val userId = FirebaseAuth.getInstance().currentUser?.uid
                         println(userId)
-                        val query = refarance.child("Product")
+                        val query = refarence.child("Product")
                             .child(userId.toString())
                             .child("category")
 
@@ -54,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
 
                             //verinin değiştiği yani verinin alındığı yer
                             override fun onDataChange(p0: DataSnapshot) {
+                                Titles.clearTitle()
                                 for (singleTitle in p0.children) {
                                     var value = singleTitle.getValue(Category::class.java)
                                     value?.key = singleTitle.key
@@ -72,8 +70,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
 
                     }
-
-                })
+                }
 //            if (etSifre.text.isNotEmpty() && etSifre.text.isNotEmpty()){
 //
 //                FirebaseAuth.getInstance().signInWithEmailAndPassword(etMail.text.toString(),etSifre.text.toString())
