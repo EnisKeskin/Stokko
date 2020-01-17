@@ -6,19 +6,19 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/etAd"
+        android:id="@+id/etUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="96dp"
         android:ems="10"
         android:hint="@string/k_adi"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
 
     <EditText
-        android:id="@+id/etSifre"
+        android:id="@+id/etPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -29,26 +29,26 @@
         app:layout_constraintTop_toBottomOf="@+id/etMail" />
 
     <EditText
-        android:id="@+id/etSifreTekrar"
+        android:id="@+id/etPasswordAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/kayitsifretekrar"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/etSifre"
-        app:layout_constraintTop_toBottomOf="@+id/etSifre" />
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <EditText
-        android:id="@+id/etMagazaAdres"
+        android:id="@+id/etAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/magazaAdresi"
         android:inputType="textPostalAddress"
-        app:layout_constraintStart_toStartOf="@+id/etMagazaAdi"
-        app:layout_constraintTop_toBottomOf="@+id/etMagazaAdi" />
+        app:layout_constraintStart_toStartOf="@+id/etShopName"
+        app:layout_constraintTop_toBottomOf="@+id/etShopName" />
 
     <EditText
         android:id="@+id/etMail"
@@ -58,30 +58,44 @@
         android:ems="10"
         android:hint="@string/mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@+id/etAd"
-        app:layout_constraintTop_toBottomOf="@+id/etAd" />
+        app:layout_constraintStart_toStartOf="@+id/etUserName"
+        app:layout_constraintTop_toBottomOf="@+id/etUserName" />
 
     <EditText
-        android:id="@+id/etMagazaAdi"
+        android:id="@+id/etShopName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/magazaAdi"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/etSifreTekrar"
-        app:layout_constraintTop_toBottomOf="@+id/etSifreTekrar" />
+        app:layout_constraintEnd_toEndOf="@+id/etPasswordAgain"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordAgain" />
 
     <Button
-        android:id="@+id/btnKaydol"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="64dp"
-        android:background="#F44336"
+        android:background="#692B16"
         android:text="@string/kaydol"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="@+id/etMagazaAdres"
-        app:layout_constraintTop_toBottomOf="@+id/etMagazaAdres" />
+        app:layout_constraintEnd_toEndOf="@+id/etAddress"
+        app:layout_constraintTop_toBottomOf="@+id/etAddress" />
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="288dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="52dp"
+        android:text="Kayıt Ol"
+        android:textAlignment="center"
+        android:textColor="#692B16"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

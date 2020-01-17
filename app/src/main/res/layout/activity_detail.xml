@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivProductImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -21,31 +21,35 @@
         app:srcCompat="@drawable/manzara8" />
 
     <TextView
-        android:id="@+id/productId"
+        android:id="@+id/tvProductId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_id"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:textColor="#692B16"
+        app:layout_constraintStart_toStartOf="@+id/ivProductImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
 
     <TextView
-        android:id="@+id/productName"
+        android:id="@+id/tvProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_ad"
-        app:layout_constraintEnd_toEndOf="@+id/productId"
-        app:layout_constraintTop_toBottomOf="@+id/productId" />
+        android:textColor="#692B16"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductId"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductId" />
 
     <TextView
-        android:id="@+id/productPiece"
+        android:id="@+id/tvProductPiece"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_adeti"
-        app:layout_constraintEnd_toEndOf="@+id/productId"
-        app:layout_constraintTop_toBottomOf="@+id/productName" />
+        android:textColor="#692B16"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductId"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
     <TextView
         android:id="@+id/productContent"
@@ -53,8 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_detay"
-        app:layout_constraintEnd_toEndOf="@+id/productPiece"
-        app:layout_constraintTop_toBottomOf="@+id/productPiece" />
+        android:textColor="#692B16"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductPiece"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductPiece" />
 
     <EditText
         android:id="@+id/etId"
@@ -63,10 +68,10 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/productId"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/productId"
-        app:layout_constraintTop_toTopOf="@+id/productId" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductId"
+        app:layout_constraintEnd_toEndOf="@+id/ivProductImage"
+        app:layout_constraintStart_toEndOf="@+id/tvProductId"
+        app:layout_constraintTop_toTopOf="@+id/tvProductId" />
 
     <EditText
         android:id="@+id/etName"
@@ -75,10 +80,10 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/productName"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductName"
         app:layout_constraintEnd_toEndOf="@+id/etId"
-        app:layout_constraintStart_toEndOf="@+id/productName"
-        app:layout_constraintTop_toTopOf="@+id/productName" />
+        app:layout_constraintStart_toEndOf="@+id/tvProductName"
+        app:layout_constraintTop_toTopOf="@+id/tvProductName" />
 
     <EditText
         android:id="@+id/etPiece"
@@ -87,10 +92,10 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/productPiece"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductPiece"
         app:layout_constraintEnd_toEndOf="@+id/etName"
-        app:layout_constraintStart_toEndOf="@+id/productPiece"
-        app:layout_constraintTop_toTopOf="@+id/productPiece" />
+        app:layout_constraintStart_toEndOf="@+id/tvProductPiece"
+        app:layout_constraintTop_toTopOf="@+id/tvProductPiece" />
 
     <EditText
         android:id="@+id/etDetail"
@@ -109,11 +114,13 @@
         app:layout_constraintTop_toBottomOf="@+id/etPiece" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnProductSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:backgroundTint="#692B16"
         android:text="@string/saveProduct"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/etDetail"
         app:layout_constraintStart_toStartOf="@+id/etDetail"
         app:layout_constraintTop_toBottomOf="@+id/etDetail" />

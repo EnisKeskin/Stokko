@@ -169,7 +169,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId) {
             R.id.nav_profile -> {
-                Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_product -> {
                 val intent = Intent(this, ProductActivity::class.java)

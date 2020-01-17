@@ -21,9 +21,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#692B16"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-a
+            a
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -34,7 +35,7 @@ a
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Navigation Drawer"
+                    android:text="Stokko"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -44,7 +45,7 @@ a
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:background="?attr/colorPrimary"
+            android:background="#692B16"
             app:tabGravity="fill"
             app:tabMaxWidth="0dp"
             app:tabMode="scrollable" />
@@ -64,6 +65,8 @@ a
             android:id="@+id/view_pager"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,9 +80,11 @@ a
             android:clickable="true"
             android:focusable="true"
             android:foregroundGravity="bottom|center"
+            app:backgroundTint="#692B16"
             app:layout_constraintBottom_toBottomOf="@+id/view_pager"
             app:layout_constraintEnd_toEndOf="@+id/view_pager"
-            app:layout_constraintStart_toStartOf="@+id/view_pager" />
+            app:layout_constraintStart_toStartOf="@+id/view_pager"
+            app:rippleColor="#692B16" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

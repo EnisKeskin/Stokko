@@ -14,15 +14,16 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        btnKaydol.setOnClickListener {
-            if (etMail.text.isNotEmpty() && etSifre.text.isNotEmpty() && etSifreTekrar.text.isNotEmpty() && etAd.text.isNotEmpty() && etMagazaAdi.text.isNotEmpty() && etMagazaAdres.text.isNotEmpty()) {
-                if (etSifre.text.toString() == etSifreTekrar.text.toString()) {
+        btnRegister.setOnClickListener {
+            if (etUserName.text.isNotEmpty() && etMail.text.isNotEmpty() && etPassword.text.isNotEmpty() && etPasswordAgain.text.isNotEmpty() && etUserName.text.isNotEmpty() && etShopName.text.isNotEmpty() && etAddress.text.isNotEmpty()) {
+                if (etPassword.text.toString() == etPasswordAgain.text.toString()) {
                     newUserRegistration(
+
                         etMail.text.toString(),
-                        etSifre.text.toString(),
-                        etAd.text.toString(),
-                        etMagazaAdi.text.toString(),
-                        etMagazaAdres.text.toString()
+                        etPassword.text.toString(),
+                        etUserName.text.toString(),
+                        etShopName.text.toString(),
+                        etAddress.text.toString()
                     )
                 } else {
                     Toast.makeText(this, "Şifreler aynı değil", Toast.LENGTH_SHORT).show()
