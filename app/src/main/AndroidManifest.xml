@@ -11,36 +11,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".SplashActivity" >
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".RegisterActivity">
-        </activity>
-
-        <activity android:name=".scandit.BarcodeScanActivity">
-        </activity>
-
-        <activity android:name=".MainActivity"
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".scandit.BarcodeScanActivity"></activity>
+        <activity
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity android:name=".ProductActivity"
+        <activity
+            android:name=".ProductActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".CategoryActivity"
+        <activity
+            android:name=".CategoryActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:windowSoftInputMode="adjustResize" />
