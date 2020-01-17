@@ -1,24 +1,24 @@
 package com.example.stockko.dataClass
 
 class Products {
-    var id: Int? = null
-    var categoryId: Int? = null
+    var categoryId: String? = null
     var name: String? = null
     var detail: String? = null
     var piece: String? = null
     var image: String? = null
     var date: String? = null
 
+
+    constructor()
+
     constructor(
-        id: Int?,
-        categoryId: Int?,
+        categoryId: String?,
         name: String?,
         detail: String?,
         piece: String?,
         image: String?,
         date: String?
     ) {
-        this.id = id
         this.categoryId = categoryId
         this.name = name
         this.detail = detail
@@ -26,7 +26,4 @@ class Products {
         this.image = image
         this.date = date
     }
-
-    constructor()
-
 }

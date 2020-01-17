@@ -2,11 +2,11 @@ package com.example.stockko
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.SearchView
@@ -22,13 +22,9 @@ import androidx.viewpager.widget.ViewPager
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_main.view.*
 import java.lang.Integer.max
 
 
@@ -167,8 +163,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             R.id.nav_profile -> {
                 Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
             }
-            R.id.nav_messages -> {
-                Toast.makeText(this, "Messages clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_product -> {
+                val intent = Intent(this, ProductActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_friends -> {
                 Toast.makeText(this, "Friends clicked", Toast.LENGTH_SHORT).show()

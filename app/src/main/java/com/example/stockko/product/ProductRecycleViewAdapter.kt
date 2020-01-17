@@ -10,8 +10,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stockko.DetailActivity
 import com.example.stockko.R
-import com.example.stockko.dataClass.Product
-import com.example.stockko.dataClass.ProductItem
 import com.example.stockko.dataClass.Products
 import kotlinx.android.synthetic.main.simple_view.view.*
 

@@ -33,6 +33,11 @@
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity android:name=".ProductActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".DetailActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
