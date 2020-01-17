@@ -9,7 +9,7 @@
         android:id="@+id/etMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="172dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -26,14 +26,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.364"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSifre" />
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <Button
         android:id="@+id/btnGirisYap"
         android:layout_width="91dp"
         android:layout_height="56dp"
         android:layout_marginTop="24dp"
+        android:backgroundTint="#692B16"
         android:text="@string/login"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +51,14 @@
         app:layout_constraintTop_toBottomOf="@+id/btnGirisYap" />
 
     <EditText
-        android:id="@+id/etSifre"
+        android:id="@+id/etPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="Şifre"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/etMail"
         app:layout_constraintTop_toBottomOf="@+id/etMail" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

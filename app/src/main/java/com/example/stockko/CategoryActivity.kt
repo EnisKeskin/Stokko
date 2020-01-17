@@ -18,7 +18,7 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     fun btnCategoryAdd(v: View) {
-        var category = tvCategory.text.toString()
+        var category = tvCategory1.text.toString()
         if (category.isNotEmpty()) {
             var reference = FirebaseDatabase.getInstance().reference
             var userId = FirebaseAuth.getInstance().currentUser?.uid
