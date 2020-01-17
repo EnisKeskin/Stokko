@@ -13,7 +13,8 @@
         android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvCategory"
-        app:layout_constraintTop_toTopOf="@+id/tvCategory" />
+        app:layout_constraintTop_toTopOf="@+id/tvCategory"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:id="@+id/tvCategory"
@@ -101,6 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="40dp"
+        android:onClick="addProduct"
         android:text="Ürün Ekle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvDetail"

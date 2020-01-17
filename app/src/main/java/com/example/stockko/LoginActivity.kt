@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
                             override fun onDataChange(p0: DataSnapshot) {
                                 for (singleTitle in p0.children) {
                                     var value = singleTitle.getValue(Category::class.java)
+                                    value?.key = singleTitle.key
                                     value?.let { it1 -> Titles.setTitle(it1) }
                                 }
                                 val intent1 = Intent(this@LoginActivity, MainActivity::class.java)

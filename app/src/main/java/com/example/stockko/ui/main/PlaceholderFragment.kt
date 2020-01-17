@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.stockko.R
 import com.example.stockko.dataClass.Category
-import com.example.stockko.dataClass.Product
-import com.example.stockko.dataClass.ProductItem
 import com.example.stockko.dataClass.Products
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.google.firebase.database.FirebaseDatabase
