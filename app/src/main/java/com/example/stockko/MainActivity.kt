@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.stockko.product.ProductRecyclerViewAdapter
+import com.example.stockko.scandit.BarcodeScanActivity
 import com.example.stockko.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -124,7 +125,14 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         mydialog = Dialog(this)
 
+        btnBarkod.setOnClickListener{
+            val intent = Intent(this, BarcodeScanActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
+
 
     //menunun oluşturulduğu yer.
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -154,7 +162,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     fun SnowPopup(view: View) {
         val kaydet: Button
         mydialog.setContentView(R.layout.custompopup)
-        kaydet = mydialog.findViewById(R.id.kaydet)
+        kaydet = mydialog.findViewById(R.id.btnProductAdd)
         mydialog.show()
     }
 
@@ -175,7 +183,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 Toast.makeText(this, "Update clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_logout -> {
-                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,LoginActivity::class.java)
+                startActivity(intent)
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
