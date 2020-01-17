@@ -167,8 +167,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 val intent = Intent(this, ProductActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_friends -> {
-                Toast.makeText(this, "Friends clicked", Toast.LENGTH_SHORT).show()
+            R.id.nav_category -> {
+                val intent = Intent(this, CategoryActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_update -> {
                 Toast.makeText(this, "Update clicked", Toast.LENGTH_SHORT).show()

@@ -8,8 +8,8 @@
             android:id="@+id/nav_product"
             android:title="Product" />
         <item
-            android:id="@+id/nav_friends"
-            android:title="Friends" />
+            android:id="@+id/nav_category"
+            android:title="Category" />
     </group>
 
 
