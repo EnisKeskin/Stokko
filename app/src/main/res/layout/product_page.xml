@@ -11,17 +11,18 @@
         android:layout_width="227dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
         app:layout_constraintStart_toEndOf="@+id/tvCategory"
-        app:layout_constraintTop_toTopOf="@+id/tvCategory"
-        android:spinnerMode="dialog" />
+        app:layout_constraintTop_toTopOf="@+id/tvCategory" />
 
     <TextView
         android:id="@+id/tvCategory"
         android:layout_width="128dp"
         android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="152dp"
         android:text="Kategori"
         android:textAlignment="center"
         android:textSize="25dp"
@@ -33,8 +34,7 @@
         android:id="@+id/tvName"
         android:layout_width="125dp"
         android:layout_height="37dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="36dp"
         android:text="İsim"
         android:textAlignment="center"
         android:textSize="25dp"
@@ -46,7 +46,8 @@
         android:id="@+id/etName"
         android:layout_width="205dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/spnCategory"
@@ -56,7 +57,7 @@
         android:id="@+id/tvPiece"
         android:layout_width="118dp"
         android:layout_height="34dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:text="Adet"
         android:textAlignment="center"
         android:textSize="25dp"
@@ -68,7 +69,7 @@
         android:id="@+id/etPiece"
         android:layout_width="207dp"
         android:layout_height="44dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/etName"
@@ -78,7 +79,7 @@
         android:id="@+id/tvDetail"
         android:layout_width="119dp"
         android:layout_height="38dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Detay"
         android:textAlignment="center"
         android:textSize="25dp"
@@ -90,7 +91,8 @@
         android:id="@+id/etDetail"
         android:layout_width="199dp"
         android:layout_height="46dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/etPiece"
@@ -100,14 +102,14 @@
         android:id="@+id/btnProductAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="108dp"
         android:layout_marginTop="40dp"
         android:onClick="addProduct"
         android:text="Ürün Ekle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvDetail"
         app:layout_constraintTop_toBottomOf="@+id/tvDetail"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -122,5 +124,46 @@
         app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBarcodId"
+        android:layout_width="116dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="84dp"
+        android:text="Barkod Id"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <EditText
+        android:id="@+id/etBarcodId"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/tvBarcodId"
+        app:layout_constraintTop_toBottomOf="@+id/btnImageAdd" />
+
+    <TextView
+        android:id="@+id/tvİmage"
+        android:layout_width="105dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <Button
+        android:id="@+id/btnImageAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:text="Fotoğraf Ekle"
+        app:layout_constraintStart_toEndOf="@+id/tvİmage"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

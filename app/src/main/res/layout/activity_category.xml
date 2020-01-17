@@ -10,9 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="56dp"
+        android:backgroundTint="#692B16"
         android:onClick="btnCategoryAdd"
         android:text="Kategori Ekle"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/tvCategory"
         app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
