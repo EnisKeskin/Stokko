@@ -32,13 +32,14 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<Products>) :
         var simpleImage = simpleItem.imgProduct
         @SuppressLint("SetTextI18n")
         fun setData(productCreatedAtThatMoment: Products) {
-            simpleName.text = "name" + productCreatedAtThatMoment.name
-            simplePiece.text = "piece" + productCreatedAtThatMoment.piece
-            simplebarcodeId.text = "barcode" + productCreatedAtThatMoment.key
+            simpleName.text = "name: " + productCreatedAtThatMoment.name
+            simplePiece.text = "piece: " + productCreatedAtThatMoment.piece
+            simplebarcodeId.text = "barcode: " + productCreatedAtThatMoment.key
             // simpleImage.setImageResource(productCreatedAtThatMoment.productImage)
 
             simpleItem.setOnClickListener { v ->
                 val intent = Intent(v.context, DetailActivity::class.java)
+                intent.putExtra("productKey",productCreatedAtThatMoment.key)
                 v.context.startActivity(intent)
             }
 
