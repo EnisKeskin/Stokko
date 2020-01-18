@@ -1,6 +1,5 @@
 package com.example.stockko.ui.main
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,7 +13,6 @@ private val TAB_TITLES = ArrayList<Category>()
 private val firstTitle = Category()
 
 //tab işlemlerinin gerçekleştiği yer
-@SuppressLint("ParcelCreator")
 @Suppress("DEPRECATION", "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "UNCHECKED_CAST")
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
