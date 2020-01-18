@@ -22,6 +22,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.stockko.MainActivity;
+import com.example.stockko.ProductActivity;
+import com.example.stockko.dataClass.Product;
 import com.scandit.datacapture.barcode.capture.*;
 import com.scandit.datacapture.barcode.data.Barcode;
 import com.scandit.datacapture.barcode.data.Symbology;
@@ -181,7 +183,7 @@ public class BarcodeScanActivity
         }
     }
 
-    private void showResult(String result) {
+    private void showResult(final String result) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         dialog = builder.setCancelable(false)
                 .setTitle(result)
@@ -190,7 +192,8 @@ public class BarcodeScanActivity
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 barcodeCapture.setEnabled(true);
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+                                intent.putExtra("barcode", result);
                                 startActivity(intent);
                             }
                         })
@@ -219,7 +222,7 @@ public class BarcodeScanActivity
 
         // Get the human readable name of the symbology and assemble the result to be shown.
         String symbology = SymbologyDescription.create(barcode.getSymbology()).getReadableName();
-        final String result = "Scanned: " + barcode.getData() + " (" + symbology + ")";
+        final String result = barcode.getData();
 
         runOnUiThread(new Runnable() {
             @Override
