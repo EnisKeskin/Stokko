@@ -1,5 +1,7 @@
 package com.example.stockko.dataClass
 
+import com.google.firebase.database.Exclude
+
 class Products {
     var key: String? = null
     var categoryId: String? = null
@@ -28,6 +30,18 @@ class Products {
         this.piece = piece
         this.image = image
         this.date = date
+    }
+
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "categoryId" to categoryId,
+            "name" to name,
+            "detail" to detail,
+            "piece" to piece,
+            "image" to image,
+            "date" to date
+        )
     }
 
 }
