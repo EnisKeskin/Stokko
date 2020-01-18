@@ -1,3 +1,5 @@
+@file:Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package com.example.stockko
 
 import android.R.*
@@ -27,16 +29,19 @@ class ProductActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         spinnerAddItem()
 
+        if (intent != null) {
+            etBarcodId.setText(intent.getStringExtra("barcode"))
+        }
     }
 
-    fun checkTextView(): Boolean {
-        if (etName.text.toString().isNotEmpty() && etPiece.text.toString().isNotEmpty()) {
+    private fun checkTextView(): Boolean {
+        if (etName.text.toString().isNotEmpty() && etPiece.text.toString().isNotEmpty() && etBarcodId.text.isNotEmpty()) {
             return true
         }
         return false
     }
 
-    fun spinnerAddItem() {
+    private fun spinnerAddItem() {
         val category = Titles.getTitle()
         val arrayCategory = arrayOfNulls<String>(category.size + 1)
         arrayCategory[0] = ""
@@ -79,13 +84,14 @@ class ProductActivity : AppCompatActivity() {
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val reference = FirebaseDatabase.getInstance().reference
             val product = reference.child("Product").child(userId.toString()).child("product")
-            product.child("barcode").setValue(addedProductItem).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    println("Veri eklendi")
-                } else {
-                    println("veri eklenemedi")
+            product.child(etBarcodId.text.toString()).setValue(addedProductItem)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        println("Veri eklendi")
+                    } else {
+                        println("veri eklenemedi")
+                    }
                 }
-            }
         }
     }
 }

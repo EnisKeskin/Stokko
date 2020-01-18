@@ -19,6 +19,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.example.stockko.dataClass.SectionsPagerGlobal
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.scandit.BarcodeScanActivity
 import com.example.stockko.ui.main.SectionsPagerAdapter
@@ -55,13 +56,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar, 0, 0
         )
-
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
         var inflater = LayoutInflater.from(this)
         //SectionsPagerAdapter oluşturulduğu kısım oluşturulduğu yer
         sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        SectionsPagerGlobal.setSectionPager(sectionsPagerAdapter)
         viewPager = findViewById(R.id.view_pager)
         //adapyerının tanımlandığı kısım
         viewPager.adapter = sectionsPagerAdapter
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         tabLayout = findViewById(R.id.tabs)
         //tabLayoutları boyutunu tam ekrana göre ayarlayan çoğaldıkca boyutu ona göre ayarlayıp düzenli bir görüntü oluşturuyor
         tabLayout.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+            tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
             //toplam boyutu tanımlanıyor
             var totalWidth = 0
             //maksimim boyutu tanımlanıyor
@@ -98,7 +100,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             if (newFocus != null) {
                 floatButton.visibility = (View.GONE)
                 //searcview için yenibir SectionsPagerAdapter yazarak hali hazırda olan recyclerView kullanabiliyorum.
-                var sectionsPagerAdapter =
+                val sectionsPagerAdapter =
                     com.example.stockko.search.SectionsPagerAdapter(
                         this,
                         supportFragmentManager
@@ -106,7 +108,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 //search recyclerView adapterıma ekleniyor
                 viewPager.adapter = sectionsPagerAdapter
                 //
-                var res = inflater.inflate(R.layout.fragment_main, null)
+                val res = inflater.inflate(R.layout.fragment_main, null)
 
                 //hali hazırda bulunan fragment_main içine yerleştiriyorum
                 mainConstraintLayout.addView(res)
@@ -125,14 +127,17 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         mydialog = Dialog(this)
 
-        btnBarkod.setOnClickListener{
+        btnBarkod.setOnClickListener {
             val intent = Intent(this, BarcodeScanActivity::class.java)
             startActivity(intent)
         }
 
     }
 
-
+    override fun getClassLoader(): ClassLoader {
+        println("main yüklendi")
+        return super.getClassLoader()
+    }
 
     //menunun oluşturulduğu yer.
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -184,7 +189,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 Toast.makeText(this, "Update clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_logout -> {
-                val intent = Intent(this,LoginActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
