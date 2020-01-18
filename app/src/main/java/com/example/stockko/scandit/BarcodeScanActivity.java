@@ -21,9 +21,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.stockko.MainActivity;
 import com.example.stockko.ProductActivity;
-import com.example.stockko.dataClass.Product;
 import com.scandit.datacapture.barcode.capture.*;
 import com.scandit.datacapture.barcode.data.Barcode;
 import com.scandit.datacapture.barcode.data.Symbology;

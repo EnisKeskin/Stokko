@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.stockko.dataClass.SectionsPagerGlobal
+import com.example.stockko.dataClass.ViewPagerGlobal
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.scandit.BarcodeScanActivity
 import com.example.stockko.ui.main.SectionsPagerAdapter
@@ -59,9 +60,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
-        var inflater = LayoutInflater.from(this)
+        val inflater = LayoutInflater.from(this)
         //SectionsPagerAdapter oluşturulduğu kısım oluşturulduğu yer
         sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        //global sectionPager atanıyor
         SectionsPagerGlobal.setSectionPager(sectionsPagerAdapter)
         viewPager = findViewById(R.id.view_pager)
         //adapyerının tanımlandığı kısım
@@ -131,12 +133,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             val intent = Intent(this, BarcodeScanActivity::class.java)
             startActivity(intent)
         }
-
-    }
-
-    override fun getClassLoader(): ClassLoader {
-        println("main yüklendi")
-        return super.getClassLoader()
     }
 
     //menunun oluşturulduğu yer.
@@ -160,6 +156,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
     override fun onQueryTextChange(newText: String?): Boolean {
         myadapter =
             viewPager.findViewById<RecyclerView>(R.id.recyclerViewItem).adapter as ProductRecyclerViewAdapter
+
         myadapter.myFilter.filter(newText)
         return true
     }
@@ -180,6 +177,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             R.id.nav_product -> {
                 val intent = Intent(this, ProductActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.nav_category -> {
                 val intent = Intent(this, CategoryActivity::class.java)
