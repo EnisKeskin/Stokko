@@ -1,5 +1,6 @@
 package com.example.stockko.product
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -26,13 +27,19 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<Products>) :
     inner class ProductViewHolder(simpleView: View) : RecyclerView.ViewHolder(simpleView) {
         var simpleItem = simpleView as CardView
         var simpleName = simpleItem.tvProductName
+        var simplebarcodeId = simpleItem.tvProductBarcode
+        var simplePiece = simpleItem.tvProductNumber
         var simpleImage = simpleItem.imgProduct
-        fun setData(productCreatedAtThatMoment: Products, position: Int) {
-            simpleName.text = productCreatedAtThatMoment.name
-           // simpleImage.setImageResource(productCreatedAtThatMoment.productImage)
+        @SuppressLint("SetTextI18n")
+        fun setData(productCreatedAtThatMoment: Products) {
+            simpleName.text = "name: " + productCreatedAtThatMoment.name
+            simplePiece.text = "piece: " + productCreatedAtThatMoment.piece
+            simplebarcodeId.text = "barcode: " + productCreatedAtThatMoment.key
+            // simpleImage.setImageResource(productCreatedAtThatMoment.productImage)
 
             simpleItem.setOnClickListener { v ->
                 val intent = Intent(v.context, DetailActivity::class.java)
+                intent.putExtra("productKey",productCreatedAtThatMoment.key)
                 v.context.startActivity(intent)
             }
 
@@ -54,7 +61,7 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<Products>) :
     //hey bir item'in oluştuktan sonraki olaylarının oluştuğu yer bu sayede her bir item'a tek tek ulaşabiliyoruz.
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val productCreatedAtThatMoment = allProduct[position]
-        holder.setData(productCreatedAtThatMoment, position)
+        holder.setData(productCreatedAtThatMoment)
     }
 
     //FilterHelper kullandığı metod bu sayede filterelenen veriler geliyor

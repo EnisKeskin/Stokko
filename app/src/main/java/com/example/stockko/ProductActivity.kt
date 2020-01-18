@@ -4,6 +4,7 @@ package com.example.stockko
 
 import android.R.*
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -11,11 +12,12 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.stockko.dataClass.Category
-import com.example.stockko.dataClass.Products
-import com.example.stockko.dataClass.Titles
+import androidx.recyclerview.widget.RecyclerView
+import com.example.stockko.dataClass.*
+import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.product_page.*
 import java.time.LocalDateTime
 
@@ -66,8 +68,15 @@ class ProductActivity : AppCompatActivity() {
 
     //geri dönme okuna basınca otomatikman bir önceki yere atar.
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         return super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        super.onBackPressed()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
