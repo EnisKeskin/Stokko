@@ -19,8 +19,10 @@
         <activity android:name=".ProfileActivity">
 
         </activity>
-        <activity android:name=".SplashActivity">
-
+        <activity android:name=".ProductActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".scandit.BarcodeScanActivity" />
@@ -41,7 +43,7 @@
         </activity>
 
         <activity
-            android:name=".ProductActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:windowSoftInputMode="adjustResize">
