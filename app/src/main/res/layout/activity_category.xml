@@ -6,29 +6,29 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="52dp"
         android:backgroundTint="#692B16"
         android:onClick="btnCategoryAdd"
         android:text="Kategori Ekle"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/tvCategory1"
+        app:layout_constraintStart_toStartOf="@+id/tvCategory1"
         app:layout_constraintTop_toBottomOf="@+id/tvCategory1" />
 
     <EditText
         android:id="@+id/tvCategory1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:hint="Kategory Adı"
         android:inputType="textPersonName"
-        android:textColor="#692B16"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textColorHint="#DE747272"
+        app:layout_constraintEnd_toEndOf="@+id/tvCategory"
         app:layout_constraintStart_toStartOf="@+id/tvCategory"
         app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
@@ -36,7 +36,7 @@
         android:id="@+id/tvCategory"
         android:layout_width="347dp"
         android:layout_height="49dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="144dp"
         android:text="Kategori Ekle"
         android:textAlignment="center"
         android:textColor="#692B16"

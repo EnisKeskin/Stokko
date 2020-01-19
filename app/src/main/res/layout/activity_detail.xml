@@ -8,14 +8,15 @@
 
     <ImageView
         android:id="@+id/ivProductImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="264dp"
+        android:layout_height="166dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="104dp"
         android:adjustViewBounds="true"
         android:maxWidth="250dp"
         android:maxHeight="250dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/manzara8" />
@@ -26,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_id"
-        android:textColor="#692B16"
         app:layout_constraintStart_toStartOf="@+id/ivProductImage"
         app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
 
@@ -36,10 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_ad"
-        android:textColor="#692B16"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvProductId"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductId" />
+        app:layout_constraintStart_toStartOf="@+id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
     <TextView
         android:id="@+id/tvProductPiece"
@@ -47,8 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_adeti"
-        android:textColor="#692B16"
-        app:layout_constraintEnd_toEndOf="@+id/tvProductId"
+        app:layout_constraintStart_toStartOf="@+id/tvProductName"
         app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
     <TextView
@@ -57,44 +55,44 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/urun_detay"
-        android:textColor="#692B16"
-        app:layout_constraintEnd_toEndOf="@+id/tvProductPiece"
+        app:layout_constraintStart_toStartOf="@+id/tvProductPiece"
         app:layout_constraintTop_toBottomOf="@+id/tvProductPiece" />
 
     <EditText
         android:id="@+id/etId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="36dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/tvProductId"
         app:layout_constraintEnd_toEndOf="@+id/ivProductImage"
         app:layout_constraintStart_toEndOf="@+id/tvProductId"
-        app:layout_constraintTop_toTopOf="@+id/tvProductId" />
+        app:layout_constraintTop_toTopOf="@+id/tvProductId"
+        app:layout_constraintVertical_bias="0.538" />
 
     <EditText
         android:id="@+id/etName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/tvProductName"
         app:layout_constraintEnd_toEndOf="@+id/etId"
-        app:layout_constraintStart_toEndOf="@+id/tvProductName"
-        app:layout_constraintTop_toTopOf="@+id/tvProductName" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/etId"
+        app:layout_constraintTop_toTopOf="@+id/tvProductName"
+        app:layout_constraintVertical_bias="0.615" />
 
     <EditText
         android:id="@+id/etPiece"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/tvProductPiece"
         app:layout_constraintEnd_toEndOf="@+id/etName"
-        app:layout_constraintStart_toEndOf="@+id/tvProductPiece"
+        app:layout_constraintStart_toStartOf="@+id/etName"
         app:layout_constraintTop_toTopOf="@+id/tvProductPiece" />
 
     <EditText
@@ -109,20 +107,43 @@
         android:maxLines="5"
         android:selectAllOnFocus="false"
         android:singleLine="false"
+        app:layout_constraintBottom_toBottomOf="@+id/productContent"
         app:layout_constraintEnd_toEndOf="@+id/etPiece"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/productContent"
-        app:layout_constraintTop_toBottomOf="@+id/etPiece" />
+        app:layout_constraintTop_toTopOf="@+id/productContent"
+        app:layout_constraintVertical_bias="0.642" />
 
     <Button
         android:id="@+id/btnProductSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#692B16"
         android:text="@string/saveProduct"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/etDetail"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/etDetail"
         app:layout_constraintTop_toBottomOf="@+id/etDetail" />
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Kategori"
+        app:layout_constraintStart_toStartOf="@+id/tvProductId"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductId" />
+
+    <Spinner
+        android:id="@+id/spnCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCategory"
+        app:layout_constraintEnd_toEndOf="@+id/etId"
+        app:layout_constraintStart_toStartOf="@+id/etId"
+        app:layout_constraintTop_toTopOf="@+id/tvCategory"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
