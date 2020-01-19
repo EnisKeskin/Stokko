@@ -9,7 +9,7 @@
         android:id="@+id/etMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="172dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
