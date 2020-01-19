@@ -33,13 +33,13 @@ import java.time.LocalDateTime
 class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImageListener {
 
     var permission = false
-    var galleryImageUri : Uri? = null
-    var cameraImageBitmap : Bitmap? = null
+    var galleryImageUri: Uri? = null
+    var cameraImageBitmap: Bitmap? = null
 
     override fun getImagePath(ImagePath1: Uri?) {
 
         galleryImageUri = ImagePath1
-        Picasso.with(this).load(galleryImageUri).resize(170,150).into(ivProductİmage)
+        Picasso.with(this).load(galleryImageUri).resize(170, 150).into(ivProductİmage)
 
     }
 
@@ -50,14 +50,10 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
     }
 
     //resimleri sıkıştırma işlemi
-    inner class BackgroundImageCompsress : AsyncTask<Uri,Void, ByteArray?>(){
+    inner class BackgroundImageCompsress : AsyncTask<Uri, Void, ByteArray?>() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-        }
-
-        override fun doInBackground(vararg params: Uri?): ByteArray? {
-
         }
 
         override fun onProgressUpdate(vararg values: Void?) {
@@ -66,6 +62,10 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
 
         override fun onPostExecute(result: ByteArray?) {
             super.onPostExecute(result)
+        }
+
+        override fun doInBackground(vararg params: Uri?): ByteArray? {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
     }
@@ -88,54 +88,59 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
 
         ivProductİmage.setOnClickListener {
 
-            if (permission){
+            if (permission) {
                 var dialog = ProductİmageFragment()
-                dialog.show(supportFragmentManager,"Fotoğraf seç")
-            }
-            else{
+                dialog.show(supportFragmentManager, "Fotoğraf seç")
+            } else {
                 permissionWant()
             }
-
-
         }
     }
 
 
     private fun permissionWant() {
-        var permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    android.Manifest.permission.CAMERA)
+        var permissions = arrayOf(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CAMERA
+        )
 
-        if (ContextCompat.checkSelfPermission(this,permissions[0])==PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,permissions[1])==PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,permissions[2])==PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(
+                this,
+                permissions[0]
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(
+                this,
+                permissions[1]
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(
+                this,
+                permissions[2]
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
 
-            permission=true
-        }
-        else{
-            ActivityCompat.requestPermissions(this,permissions,150)
+            permission = true
+        } else {
+            ActivityCompat.requestPermissions(this, permissions, 150)
         }
     }
 
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 150) {
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-
-
-        if (requestCode==150){
-
-            if(grantResults[0]==PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED && grantResults[2]==PackageManager.PERMISSION_GRANTED){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
                 var dialog = ProductİmageFragment()
-                dialog.show(supportFragmentManager,"Fotoğraf seç")
-            }
-
-            else{
-                Toast.makeText(this, "Tüm izinleri vermelisiniz.",Toast.LENGTH_SHORT).show()
+                dialog.show(supportFragmentManager, "Fotoğraf seç")
+            } else {
+                Toast.makeText(this, "Tüm izinleri vermelisiniz.", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-
 
 
     private fun checkTextView(): Boolean {
