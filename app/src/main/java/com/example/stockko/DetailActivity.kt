@@ -18,6 +18,8 @@ import java.time.LocalDateTime
 class DetailActivity : AppCompatActivity() {
     //detay activity oluduğu yer
 
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
