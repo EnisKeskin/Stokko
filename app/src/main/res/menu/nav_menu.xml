@@ -2,9 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/nav_profile"
-            android:title="Profile" />
-        <item
             android:id="@+id/nav_product"
             android:title="Product" />
         <item
@@ -16,8 +13,8 @@
     <item android:title="Account Settings">
         <menu>
             <item
-                android:id="@+id/nav_update"
-                android:title="Update Profile" />
+                android:id="@+id/nav_profile"
+                android:title="Profile" />
             <item
                 android:id="@+id/nav_logout"
                 android:title="Sign Out" />
