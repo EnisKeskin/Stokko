@@ -1,7 +1,6 @@
 package com.example.stockko
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -23,10 +22,6 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
-       /* btnSave.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }*/
     }
 
     fun btnCategoryAdd(v: View) {

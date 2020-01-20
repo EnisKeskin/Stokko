@@ -19,19 +19,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.stockko.dataClass.*
-import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_page.*
 import java.io.IOException
 import java.time.LocalDateTime
 import java.util.*
-import kotlin.collections.HashMap
 
 @Suppress("DEPRECATION")
 @SuppressLint("Registered")
@@ -90,7 +85,6 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
             }
         }
     }
-
 
     private fun permissionWant() {
         var permissions = arrayOf(
@@ -184,7 +178,6 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
     fun addProduct(view: View) {
         if (checkTextView()) {
             val addedProductItem = Products()
-
             if (galleryImageUri != null) {
                 val storeReference = FirebaseStorage.getInstance().reference
                 val imagekey = UUID.randomUUID().toString()
@@ -197,6 +190,7 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
                 }.addOnSuccessListener {
                     Toast.makeText(this, "Ürün Eklendi", Toast.LENGTH_LONG)
                         .show()
+
                     addedProductItem.categoryId =
                         selectCategory(spnCategory.selectedItem.toString())
                     addedProductItem.date = LocalDateTime.now().toString()
@@ -220,9 +214,7 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
                             }
                         }
                 }
-
             } else {
-
                 addedProductItem.categoryId =
                     selectCategory(spnCategory.selectedItem.toString())
                 addedProductItem.date = LocalDateTime.now().toString()
@@ -248,12 +240,8 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
                         }
                     }
             }
-
-
         }
     }
-
-
 }
 
 

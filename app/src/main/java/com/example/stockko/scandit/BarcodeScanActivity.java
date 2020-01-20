@@ -17,7 +17,6 @@ package com.example.stockko.scandit;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -68,30 +67,23 @@ public class BarcodeScanActivity
     }
 
     private void initializeAndStartBarcodeScanning() {
-        // Create data capture context using your license key.
+        //lisans keyi giriliyor
         dataCaptureContext = DataCaptureContext.forLicenseKey(SCANDIT_LICENSE_KEY);
 
-        // Use the default camera and set it as the frame source of the context.
-        // The camera is off by default and must be turned on to start streaming frames to the data
-        // capture context for recognition.
-        // See resumeFrameSource and pauseFrameSource below.
+       //Kamerayı tüm çerçecevede göstermek için
         camera = Camera.getDefaultCamera();
         if (camera != null) {
-            // Use the recommended camera settings for the BarcodeCapture mode.
+           //barcode çercevesinin gösterildiği yer
             camera.applySettings(BarcodeCapture.createRecommendedCameraSettings());
             dataCaptureContext.setFrameSource(camera);
         } else {
-            throw new IllegalStateException("Sample depends on a camera, which failed to initialize.");
+            throw new IllegalStateException("Başlatılamayan bir kameraya bağlıdır.");
         }
 
-        // The barcode capturing process is configured through barcode capture settings
-        // which are then applied to the barcode capture instance that manages barcode recognition.
+       //barcode ayarlarının oluşturulduğu ve başlatıldığı yer
         BarcodeCaptureSettings barcodeCaptureSettings = new BarcodeCaptureSettings();
 
-        // The settings instance initially has all types of barcodes (symbologies) disabled.
-        // For the purpose of this sample we enable a very generous set of symbologies.
-        // In your own app ensure that you only enable the symbologies that your app requires as
-        // every additional enabled symbology has an impact on processing times.
+        //Hangi barcode tiplerinini tarayacığı yer
         HashSet<Symbology> symbologies = new HashSet<>();
         symbologies.add(Symbology.EAN13_UPCA);
         symbologies.add(Symbology.EAN8);
@@ -104,12 +96,7 @@ public class BarcodeScanActivity
 
         barcodeCaptureSettings.enableSymbologies(symbologies);
 
-        // Some linear/1d barcode symbologies allow you to encode variable-length data.
-        // By default, the Scandit Data Capture SDK only scans barcodes in a certain length range.
-        // If your application requires scanning of one of these symbologies, and the length is
-        // falling outside the default range, you may need to adjust the "active symbol counts"
-        // for this symbology. This is shown in the following few lines of code for one of the
-        // variable-length symbologies.
+        //Belirli uzunluklardaki barcodeları tanımalamak için alltaki list oluşturulmuştur
         SymbologySettings symbologySettings =
                 barcodeCaptureSettings.getSymbologySettings(Symbology.CODE39);
 
@@ -118,19 +105,16 @@ public class BarcodeScanActivity
 
         symbologySettings.setActiveSymbolCounts(activeSymbolCounts);
 
-        // Create new barcode capture mode with the settings from above.
+        //ayarlar tamamlandıktan sonra yeni ayarlar barcode eklendi
         barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, barcodeCaptureSettings);
 
-        // Register self as a listener to get informed whenever a new barcode got recognized.
+        //barcode listeye eklendi
         barcodeCapture.addListener(this);
 
-        // To visualize the on-going barcode capturing process on screen, setup a data capture view
-        // that renders the camera preview. The view must be connected to the data capture context.
+        //Yapılan ayarların görselleştirilmesi ile ilgili ayar
         dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext);
 
-        // Add a barcode capture overlay to the data capture view to render the location of captured
-        // barcodes on top of the video preview.
-        // This is optional, but recommended for better visual feedback.
+       //barcode okunduğu ve kaydediğildiği yer
         BarcodeCaptureOverlay overlay = BarcodeCaptureOverlay.newInstance(barcodeCapture, dataCaptureView);
         overlay.setViewfinder(new RectangularViewfinder());
 
@@ -151,10 +135,7 @@ public class BarcodeScanActivity
     }
 
     private void pauseFrameSource() {
-        // Switch camera off to stop streaming frames.
-        // The camera is stopped asynchronously and will take some time to completely turn off.
-        // Until it is completely stopped, it is still possible to receive further results, hence
-        // it's a good idea to first disable barcode capture as well.
+        //kamera uyumsuzluğu veya zorla kapatma durumunda çalışır
         barcodeCapture.setEnabled(false);
         camera.switchToDesiredState(FrameSourceState.OFF, null);
     }
@@ -162,9 +143,7 @@ public class BarcodeScanActivity
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Check for camera permission and request it, if it hasn't yet been granted.
-        // Once we have the permission the onCameraPermissionGranted() method will be called.
+        //kamera iznini kontrol ediyor
         requestCameraPermission();
     }
 
@@ -176,8 +155,7 @@ public class BarcodeScanActivity
     private void resumeFrameSource() {
         dismissScannedCodesDialog();
 
-        // Switch camera on to start streaming frames.
-        // The camera is started asynchronously and will take some time to completely turn on.
+        //kameranın başlatıldığı yer
         barcodeCapture.setEnabled(true);
         camera.switchToDesiredState(FrameSourceState.ON, null);
     }
@@ -188,7 +166,7 @@ public class BarcodeScanActivity
             dialog = null;
         }
     }
-
+    //verinin gösterildiğiy er
     private void showResult(final String result) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
@@ -198,10 +176,7 @@ public class BarcodeScanActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                   /* Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-                    intent.putExtra("productKey", result);
-                    startActivity(intent);
-                    finish();*/
+                    //verinin yönlendirildiği yer
                     dialog = builder.setCancelable(false)
                             .setTitle(result)
                             .setPositiveButton("Ürüne git",
@@ -269,19 +244,12 @@ public class BarcodeScanActivity
 
         Barcode barcode = session.getNewlyRecognizedBarcodes().get(0);
         //barkod numarasının geldiği yer
-        // Stop recognizing barcodes for as long as we are displaying the result. There won't be any
-        // new results until the capture mode is enabled again. Note that disabling the capture mode
-        // does not stop the camera, the camera continues to stream frames until it is turned off.
         barcodeCapture.setEnabled(false);
 
-        // If you are not disabling barcode capture here and want to continue scanning, consider
-        // setting the codeDuplicateFilter when creating the barcode capture settings to around 500
-        // or even -1 if you do not want codes to be scanned more than once.
 
-        // Get the human readable name of the symbology and assemble the result to be shown.
-        String symbology = SymbologyDescription.create(barcode.getSymbology()).getReadableName();
+        SymbologyDescription.create(barcode.getSymbology()).getReadableName();
         final String result = barcode.getData();
-
+        //thread işi bittiğinde görüntüye veriyi gönderiyor.
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
