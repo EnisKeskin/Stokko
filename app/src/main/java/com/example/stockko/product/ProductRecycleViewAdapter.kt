@@ -14,7 +14,6 @@ import com.example.stockko.DetailActivity
 import com.example.stockko.R
 import com.example.stockko.dataClass.Products
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.simple_view.view.*
 
 //Burda recyclerView adapterının yazıldığı yer.

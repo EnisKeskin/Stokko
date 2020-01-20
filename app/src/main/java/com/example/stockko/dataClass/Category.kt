@@ -9,5 +9,5 @@ class Category {
         this.name = name
     }
 
-    constructor() {}
+    constructor()
 }

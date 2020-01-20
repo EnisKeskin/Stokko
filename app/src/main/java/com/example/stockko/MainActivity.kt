@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.stockko.dataClass.SectionsPagerGlobal
 import com.example.stockko.dataClass.User
-import com.example.stockko.dataClass.ViewPagerGlobal
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.scandit.BarcodeScanActivity
 import com.example.stockko.ui.main.SectionsPagerAdapter
@@ -33,7 +32,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header.*
 import java.lang.Integer.max
