@@ -45,68 +45,68 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
     }
 //sözde buradan yapacaktım ama sıkıştırma yapmadım o yüzden anlamadım
 
-   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 150 && resultCode == 100) {
-            if(data == null || data.data == null){
-                return
-            }
+    /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+         super.onActivityResult(requestCode, resultCode, data)
+         if (requestCode == 150 && resultCode == 100) {
+             if(data == null || data.data == null){
+                 return
+             }
 
 
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, galleryImageUri)
-                ivProductİmage.setImageBitmap(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-    }
+             try {
+                 val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, galleryImageUri)
+                 ivProductİmage.setImageBitmap(bitmap)
+             } catch (e: IOException) {
+                 e.printStackTrace()
+             }
+         }
+     }
 
-    private fun uploadImage(){
-        if(galleryImageUri != null){
-            var storeReference = FirebaseStorage.getInstance().getReference()
-            var ref = storeReference?.child("uploads/" + UUID.randomUUID().toString())
-            val uploadTask = ref?.putFile(galleryImageUri!!)
+     private fun uploadImage(){
+         if(galleryImageUri != null){
+             var storeReference = FirebaseStorage.getInstance().getReference()
+             var ref = storeReference?.child("uploads/" + UUID.randomUUID().toString())
+             val uploadTask = ref?.putFile(galleryImageUri!!)
 
-            val urlTask = uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
-                    }
-                }
-                return@Continuation ref.downloadUrl
-            })?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                    addUploadRecordToDb(downloadUri.toString())
-                } else {
-                    // Handle failures
-                }
-            }?.addOnFailureListener{
+             val urlTask = uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                 if (!task.isSuccessful) {
+                     task.exception?.let {
+                         throw it
+                     }
+                 }
+                 return@Continuation ref.downloadUrl
+             })?.addOnCompleteListener { task ->
+                 if (task.isSuccessful) {
+                     val downloadUri = task.result
+                     addUploadRecordToDb(downloadUri.toString())
+                 } else {
+                     // Handle failures
+                 }
+             }?.addOnFailureListener{
 
-            }
-        }else{
-            Toast.makeText(this, "Please Upload an Image", Toast.LENGTH_SHORT).show()
-        }
-    }
+             }
+         }else{
+             Toast.makeText(this, "Please Upload an Image", Toast.LENGTH_SHORT).show()
+         }
+     }
 
 
-    private fun addUploadRecordToDb(uri: String){
-        val db = FirebaseFirestore.getInstance()
+     private fun addUploadRecordToDb(uri: String){
+         val db = FirebaseFirestore.getInstance()
 
-        val data = HashMap<String, Any>()
-        data["imageUrl"] = uri
+         val data = HashMap<String, Any>()
+         data["imageUrl"] = uri
 
-        db.collection("posts")
-            .add(data)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Saved to DB", Toast.LENGTH_LONG).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error saving to DB", Toast.LENGTH_LONG).show()
-            }
-    }
-*/
+         db.collection("posts")
+             .add(data)
+             .addOnSuccessListener { documentReference ->
+                 Toast.makeText(this, "Saved to DB", Toast.LENGTH_LONG).show()
+             }
+             .addOnFailureListener { e ->
+                 Toast.makeText(this, "Error saving to DB", Toast.LENGTH_LONG).show()
+             }
+     }
+ */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,11 +114,6 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
         //sol üstte sola doğru oku aktif eder.
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         spinnerAddItem()
-
-        btnProductAdd.setOnClickListener {
-            var intent = Intent(this, DetailActivity::class.java)
-            startActivity(intent)
-        }
 
         if (intent != null) {
             etBarcodId.setText(intent.getStringExtra("barcode"))
@@ -242,6 +237,9 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         println("Veri eklendi")
+                        var intent = Intent(this, DetailActivity::class.java)
+                        intent.putExtra("productKey", etBarcodId.text.toString())
+                        startActivity(intent)
                     } else {
                         println("veri eklenemedi")
                     }

@@ -90,22 +90,26 @@ class PlaceholderFragment : Fragment() {
                         allProduct.add(value)
                     }
                 }
-                //recyclerView adapterının tanımlanması bu sayede içine simple_view aktarılabilecek
-                val recyclerView: RecyclerView = recyclerViewItem
-                recyclerView.adapter = myAdapter
-                //recyclerView optimizasyonu sağlamak için fixedsize yani boyutunu sabit tutmayı aktif hale getirdik
-                recyclerView.setHasFixedSize(true)
-                //Cache tutacak boyut
-                recyclerView.setItemViewCacheSize(20)
-                //boyuttan alacağını açtık
-                recyclerView.isDrawingCacheEnabled = true
-                //Cachelenen cizimleri aldık
-                recyclerView.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
-                //recyclerView bir layout yani görüntü kazandırmak için bir çok görüntü bicimi var StaggeredHorizontal ..vb gibi
-                val layoutManager =
-                    StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
-                recyclerView.layoutManager = layoutManager
-                // bunun sayesinde viewPage icine verilerimiz aktarılıyor.
+
+                if (recyclerViewItem != null) {
+                    //recyclerView adapterının tanımlanması bu sayede içine simple_view aktarılabilecek
+                    val recyclerView: RecyclerView = recyclerViewItem
+                    recyclerView.adapter = myAdapter
+                    //recyclerView optimizasyonu sağlamak için fixedsize yani boyutunu sabit tutmayı aktif hale getirdik
+                    recyclerView.setHasFixedSize(true)
+                    //Cache tutacak boyut
+                    recyclerView.setItemViewCacheSize(20)
+                    //boyuttan alacağını açtık
+                    recyclerView.isDrawingCacheEnabled = true
+                    //Cachelenen cizimleri aldık
+                    recyclerView.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
+                    //recyclerView bir layout yani görüntü kazandırmak için bir çok görüntü bicimi var StaggeredHorizontal ..vb gibi
+                    val layoutManager =
+                        StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+                    recyclerView.layoutManager = layoutManager
+                    // bunun sayesinde viewPage icine verilerimiz aktarılıyor.
+                }
+
             }
 
         })
