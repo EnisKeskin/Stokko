@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -18,15 +17,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.example.stockko.dataClass.*
-import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.product_page.*
-import kotlinx.android.synthetic.main.simple_view.*
 import java.time.LocalDateTime
 
 @SuppressLint("Registered")
@@ -48,27 +43,70 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
         cameraImageBitmap = bitmap
         ivProductİmage.setImageBitmap(bitmap)
     }
+//sözde buradan yapacaktım ama sıkıştırma yapmadım o yüzden anlamadım
 
-    //resimleri sıkıştırma işlemi
-    inner class BackgroundImageCompsress : AsyncTask<Uri, Void, ByteArray?>() {
+   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 150 && resultCode == 100) {
+            if(data == null || data.data == null){
+                return
+            }
 
-        override fun onPreExecute() {
-            super.onPreExecute()
+
+            try {
+                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, galleryImageUri)
+                ivProductİmage.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
-
-        override fun onProgressUpdate(vararg values: Void?) {
-            super.onProgressUpdate(*values)
-        }
-
-        override fun onPostExecute(result: ByteArray?) {
-            super.onPostExecute(result)
-        }
-
-        override fun doInBackground(vararg params: Uri?): ByteArray? {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
     }
+
+    private fun uploadImage(){
+        if(galleryImageUri != null){
+            var storeReference = FirebaseStorage.getInstance().getReference()
+            var ref = storeReference?.child("uploads/" + UUID.randomUUID().toString())
+            val uploadTask = ref?.putFile(galleryImageUri!!)
+
+            val urlTask = uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                return@Continuation ref.downloadUrl
+            })?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    addUploadRecordToDb(downloadUri.toString())
+                } else {
+                    // Handle failures
+                }
+            }?.addOnFailureListener{
+
+            }
+        }else{
+            Toast.makeText(this, "Please Upload an Image", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun addUploadRecordToDb(uri: String){
+        val db = FirebaseFirestore.getInstance()
+
+        val data = HashMap<String, Any>()
+        data["imageUrl"] = uri
+
+        db.collection("posts")
+            .add(data)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(this, "Saved to DB", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error saving to DB", Toast.LENGTH_LONG).show()
+            }
+    }
+*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,7 +182,7 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
 
 
     private fun checkTextView(): Boolean {
-        if (etName.text.toString().isNotEmpty() && etPiece.text.toString().isNotEmpty() && etBarcodId.text.isNotEmpty()) {
+        if (etName.text.toString().isNotEmpty() && etPrice.text.toString().isNotEmpty() && etBarcodId.text.isNotEmpty()) {
             return true
         }
         return false
@@ -194,7 +232,7 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
             addedProductItem.date = LocalDateTime.now().toString()
             addedProductItem.detail = etDetail.text.toString()
             addedProductItem.name = etName.text.toString()
-            addedProductItem.piece = etPiece.text.toString()
+            addedProductItem.piece = etPrice.text.toString()
             addedProductItem.image = "image"
 
             val userId = FirebaseAuth.getInstance().currentUser?.uid

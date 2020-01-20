@@ -8,8 +8,8 @@
 
     <Spinner
         android:id="@+id/spnCategory"
-        android:layout_width="95dp"
-        android:layout_height="28dp"
+        android:layout_width="208dp"
+        android:layout_height="25dp"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="@+id/tvCategory1"
         app:layout_constraintEnd_toEndOf="@+id/etBarcodId"
@@ -31,9 +31,9 @@
 
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="54dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="28dp"
         android:text="Ürün Adı"
         android:textAlignment="viewStart"
         android:textSize="14dp"
@@ -47,28 +47,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/tvProductName"
+        app:layout_constraintEnd_toEndOf="@+id/etBarcodId"
         app:layout_constraintStart_toStartOf="@+id/spnCategory"
-        app:layout_constraintTop_toTopOf="@+id/tvProductName" />
+        app:layout_constraintTop_toTopOf="@+id/tvProductName"
+        android:autofillHints="" />
 
-    <TextView
-        android:id="@+id/tvPiece"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Ürün Adeti"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@+id/tvProductName"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
-
-    <EditText
-        android:id="@+id/etPiece"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/tvPiece"
-        app:layout_constraintStart_toStartOf="@+id/etName"
-        app:layout_constraintTop_toTopOf="@+id/tvPiece" />
 
     <TextView
         android:id="@+id/tvDetail"
@@ -77,8 +60,8 @@
         android:layout_marginTop="32dp"
         android:text="Ürün Detayı"
         android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@+id/tvPiece"
-        app:layout_constraintTop_toBottomOf="@+id/tvPiece" />
+        app:layout_constraintStart_toStartOf="@+id/tvProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductPrice" />
 
     <EditText
         android:id="@+id/etDetail"
@@ -87,30 +70,34 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/tvDetail"
-        app:layout_constraintStart_toStartOf="@+id/etPiece"
+        app:layout_constraintEnd_toEndOf="@+id/etPrice"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etPrice"
         app:layout_constraintTop_toTopOf="@+id/tvDetail"
-        app:layout_constraintVertical_bias="0.461" />
+        app:layout_constraintVertical_bias="0.576" />
 
     <Button
         android:id="@+id/btnProductAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#692B16"
         android:onClick="addProduct"
         android:text="Ürün Ekle"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/etDetail"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/tvDetail"
         app:layout_constraintTop_toBottomOf="@+id/tvDetail" />
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="229dp"
-        android:layout_height="56dp"
+        android:layout_width="354dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
         android:text="Ürün Ekle"
         android:textAlignment="center"
         android:textColor="#692B16"
@@ -125,33 +112,57 @@
         android:id="@+id/tvProductId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
         android:text="Ürün Id"
         android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/ivProductİmage" />
 
     <EditText
         android:id="@+id/etBarcodId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/tvProductId"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tvProductId"
         app:layout_constraintTop_toTopOf="@+id/tvProductId"
-        app:layout_constraintVertical_bias="0.461" />
+        app:layout_constraintVertical_bias="0.538" />
 
     <ImageView
         android:id="@+id/ivProductİmage"
         android:layout_width="170dp"
         android:layout_height="150dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:srcCompat="@tools:sample/avatars[15]" />
+
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Ürün Adeti"
+        app:layout_constraintStart_toStartOf="@+id/tvProductName"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+
+    <EditText
+        android:id="@+id/etPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductPrice"
+        app:layout_constraintEnd_toEndOf="@+id/etName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etName"
+        app:layout_constraintTop_toTopOf="@+id/tvProductPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
