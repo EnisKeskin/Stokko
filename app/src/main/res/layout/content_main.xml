@@ -23,7 +23,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#692B16"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-            a
+
 
             <LinearLayout
                 android:layout_width="match_parent"
