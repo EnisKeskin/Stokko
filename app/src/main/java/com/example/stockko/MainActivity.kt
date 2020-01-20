@@ -27,6 +27,7 @@ import com.example.stockko.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.content_main.*
 import java.lang.Integer.max
 
@@ -189,6 +190,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             R.id.nav_logout -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
+                FirebaseAuth.getInstance().signOut()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)

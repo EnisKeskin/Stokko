@@ -44,8 +44,8 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
         ivProductİmage.setImageBitmap(bitmap)
     }
 //sözde buradan yapacaktım ama sıkıştırma yapmadım o yüzden anlamadım
-
-    /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+/*
+     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
          super.onActivityResult(requestCode, resultCode, data)
          if (requestCode == 150 && resultCode == 100) {
              if(data == null || data.data == null){
