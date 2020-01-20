@@ -17,11 +17,20 @@ package com.example.stockko.scandit;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.stockko.DetailActivity;
 import com.example.stockko.ProductActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.scandit.datacapture.barcode.capture.*;
 import com.scandit.datacapture.barcode.data.Barcode;
 import com.scandit.datacapture.barcode.data.Symbology;
@@ -36,6 +45,7 @@ import com.scandit.datacapture.core.ui.viewfinder.RectangularViewfinder;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 
 import static android.content.DialogInterface.OnClickListener;
 
@@ -182,21 +192,73 @@ public class BarcodeScanActivity
     }
 
     private void showResult(final String result) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        dialog = builder.setCancelable(false)
-                .setTitle(result)
-                .setPositiveButton(android.R.string.ok,
-                        new OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                barcodeCapture.setEnabled(true);
-                                Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-                                intent.putExtra("barcode", result);
-                                startActivity(intent);
-                            }
-                        })
-                .create();
-        dialog.show();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query product = reference.child("Product").child(userId).child("product").orderByKey().equalTo(result);
+        product.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                   /* Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                    intent.putExtra("productKey", result);
+                    startActivity(intent);
+                    finish();*/
+                    dialog = builder.setCancelable(false)
+                            .setTitle(result)
+                            .setPositiveButton("Ürüne git",
+                                    new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            barcodeCapture.setEnabled(true);
+                                            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                                            intent.putExtra("productKey", result);
+                                            finish();
+                                            startActivity(intent);
+                                        }
+                                    })
+                            .setNegativeButton("İptal et",
+                                    new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            barcodeCapture.setEnabled(true);
+                                        }
+                                    })
+                            .create();
+                    dialog.show();
+                } else {
+                    dialog = builder.setCancelable(false)
+                            .setTitle(result)
+                            .setPositiveButton("Ürünü ekle",
+                                    new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            barcodeCapture.setEnabled(true);
+                                            Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+                                            intent.putExtra("barcode", result);
+                                            finish();
+                                            startActivity(intent);
+                                        }
+                                    })
+                            .setNegativeButton("İptal et",
+                                    new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            barcodeCapture.setEnabled(true);
+                                        }
+                                    })
+                            .create();
+                    dialog.show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     @Override
