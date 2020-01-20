@@ -47,7 +47,7 @@ class DetailActivity : AppCompatActivity() {
                     val value = p0.getValue(Products::class.java)!!
                     etId.setText(p0.key)
                     etName.setText(value.name)
-                    etPiece.setText(value.piece)
+                    nbrPiece.setText(value.piece)
                     etDetail.setText(value.detail)
                 }
             })
@@ -60,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
             val productValue = Products()
             productValue.key = key
             productValue.name = etName.text.toString()
-            productValue.piece = etPiece.text.toString()
+            productValue.piece = nbrPiece.text.toString()
             productValue.detail = etDetail.text.toString()
             productValue.date = LocalDateTime.now().toString()
             val reference = FirebaseDatabase.getInstance().reference
