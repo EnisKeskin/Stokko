@@ -30,38 +30,42 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
         if (intent != null) {
             val key = intent.getStringExtra("productKey")
-            spinnerAddItem()
-            val reference = FirebaseDatabase.getInstance().reference
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-            val product = reference
-                .child("Product")
-                .child(userId.toString())
-                .child("product")
-                .child(key)
-            product.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    //hata olduğundan main dönecek
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                //image ve category eklenecek
-                override fun onDataChange(p0: DataSnapshot) {
-                    val value = p0.getValue(Products::class.java)!!
-                    etId.setText(p0.key)
-                    val category = Titles.getTitle()
-                    repeat(category.size) {
-                        if (category[it].key == value.categoryId) {
-                            spnCategory.setSelection(it + 1)
-                        }
+            if (key.isNotEmpty()) {
+                spinnerAddItem()
+                val reference = FirebaseDatabase.getInstance().reference
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                val product = reference
+                    .child("Product")
+                    .child(userId.toString())
+                    .child("product")
+                    .child(key)
+                product.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        //hata olduğundan main dönecek
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     }
-                    etName.setText(value.name)
-                    nbrPiece.setText(value.piece)
-                    etDetail.setText(value.detail)
-                }
-            })
+
+                    //image ve category eklenecek
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val value = p0.getValue(Products::class.java)!!
+                        etId.setText(p0.key)
+                        val category = Titles.getTitle()
+                        repeat(category.size) {
+                            if (category[it].key == value.categoryId) {
+                                spnCategory.setSelection(it + 1)
+                            }
+                        }
+                        etName.setText(value.name)
+                        nbrPiece.setText(value.piece)
+                        etDetail.setText(value.detail)
+                    }
+                })
+            }else {
+                //main gidicek hata mesajı verip
+            }
+
         } else {
             //hata olduğundan main dönecek
         }
