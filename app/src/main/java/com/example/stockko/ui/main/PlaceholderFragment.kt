@@ -29,8 +29,6 @@ class PlaceholderFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         myAdapter = ProductRecyclerViewAdapter(allProduct)
-        //myAdapter.notifyDataSetChanged()
-        //myAdapter.setHasStableIds(true)
     }
 
     //nesnelerin görüntülerinin oluştuğu yer

@@ -120,8 +120,11 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
         grantResults: IntArray
     ) {
         if (requestCode == 150) {
-
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
+            if (
+                grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                grantResults[1] == PackageManager.PERMISSION_GRANTED &&
+                grantResults[2] == PackageManager.PERMISSION_GRANTED
+            ) {
                 var dialog = ProductİmageFragment()
                 dialog.show(supportFragmentManager, "Fotoğraf seç")
             } else {
@@ -129,7 +132,6 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
             }
         }
     }
-
 
     private fun checkTextView(): Boolean {
         if (etName.text.toString().isNotEmpty() && etPrice.text.toString().isNotEmpty() && etBarcodId.text.isNotEmpty()) {
