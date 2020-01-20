@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.stockko.dataClass.SectionsPagerGlobal
+import com.example.stockko.dataClass.User
 import com.example.stockko.dataClass.ViewPagerGlobal
 import com.example.stockko.product.ProductRecyclerViewAdapter
 import com.example.stockko.scandit.BarcodeScanActivity
@@ -28,7 +29,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.nav_header.*
 import java.lang.Integer.max
 
 
@@ -94,6 +101,42 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
                 tabLayout.tabMode = TabLayout.MODE_FIXED
             }
+
+
+
+
+
+
+            val reference = FirebaseDatabase.getInstance().reference
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+            val mail = FirebaseAuth.getInstance().currentUser?.email
+            val user = reference
+                .child("Users")
+                .child(userId.toString())
+
+            user.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    //hata olduğundan main dönecek
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val value = p0.getValue(User::class.java)!!
+
+                    tvUserName.setText(value.username)
+                    tvemail.setText(mail)
+
+                }
+            })
+
+
+
+
+
+
+
+
         }
 
         tabLayout.setupWithViewPager(viewPager)
@@ -183,9 +226,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
             R.id.nav_category -> {
                 val intent = Intent(this, CategoryActivity::class.java)
                 startActivity(intent)
-            }
-            R.id.nav_update -> {
-                Toast.makeText(this, "Update clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_logout -> {
                 val intent = Intent(this, LoginActivity::class.java)
