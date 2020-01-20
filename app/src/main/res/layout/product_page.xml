@@ -143,7 +143,7 @@
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        tools:srcCompat="@tools:sample/avatars[15]" />
+        app:srcCompat="@drawable/defaultimage" />
 
     <TextView
         android:id="@+id/tvProductPrice"

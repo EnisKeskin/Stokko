@@ -2,6 +2,7 @@ package com.example.stockko.product
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.stockko.DetailActivity
 import com.example.stockko.R
 import com.example.stockko.dataClass.Products
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.simple_view.view.*
 
 //Burda recyclerView adapterının yazıldığı yer.
@@ -35,11 +38,23 @@ class ProductRecyclerViewAdapter(private var allProduct: ArrayList<Products>) :
             simpleName.text = "name: " + productCreatedAtThatMoment.name
             simplePiece.text = "piece: " + productCreatedAtThatMoment.piece
             simplebarcodeId.text = "barcode: " + productCreatedAtThatMoment.key
-            // simpleImage.setImageResource(productCreatedAtThatMoment.productImage)
+            if (productCreatedAtThatMoment.image != "") {
+                val storageRef = FirebaseStorage.getInstance().reference
+
+                val pathReference =
+                    storageRef.child("images").child(productCreatedAtThatMoment.image.toString())
+                val oneMegabyte: Long = 1024 * 1024
+                pathReference.getBytes(oneMegabyte).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                    simpleImage.setImageBitmap(bitmap)
+                }.addOnFailureListener {
+                    // Handle any errors
+                }
+            }
 
             simpleItem.setOnClickListener { v ->
                 val intent = Intent(v.context, DetailActivity::class.java)
-                intent.putExtra("productKey",productCreatedAtThatMoment.key)
+                intent.putExtra("productKey", productCreatedAtThatMoment.key)
                 v.context.startActivity(intent)
             }
 

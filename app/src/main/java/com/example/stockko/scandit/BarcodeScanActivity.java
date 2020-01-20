@@ -64,8 +64,6 @@ public class BarcodeScanActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Initialize and start the barcode recognition.
         initializeAndStartBarcodeScanning();
     }
 

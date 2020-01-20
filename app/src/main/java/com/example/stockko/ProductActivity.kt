@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -18,95 +19,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.stockko.dataClass.*
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_page.*
+import java.io.IOException
 import java.time.LocalDateTime
+import java.util.*
+import kotlin.collections.HashMap
 
+@Suppress("DEPRECATION")
 @SuppressLint("Registered")
 class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImageListener {
 
     var permission = false
     var galleryImageUri: Uri? = null
     var cameraImageBitmap: Bitmap? = null
-
-    override fun getImagePath(ImagePath1: Uri?) {
-
-        galleryImageUri = ImagePath1
-        Picasso.with(this).load(galleryImageUri).resize(170, 150).into(ivProductİmage)
-
-    }
-
-    override fun getImageBitmap(bitmap: Bitmap) {
-
-        cameraImageBitmap = bitmap
-        ivProductİmage.setImageBitmap(bitmap)
-    }
-//sözde buradan yapacaktım ama sıkıştırma yapmadım o yüzden anlamadım
-/*
-     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-         super.onActivityResult(requestCode, resultCode, data)
-         if (requestCode == 150 && resultCode == 100) {
-             if(data == null || data.data == null){
-                 return
-             }
-
-
-             try {
-                 val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, galleryImageUri)
-                 ivProductİmage.setImageBitmap(bitmap)
-             } catch (e: IOException) {
-                 e.printStackTrace()
-             }
-         }
-     }
-
-     private fun uploadImage(){
-         if(galleryImageUri != null){
-             var storeReference = FirebaseStorage.getInstance().getReference()
-             var ref = storeReference?.child("uploads/" + UUID.randomUUID().toString())
-             val uploadTask = ref?.putFile(galleryImageUri!!)
-
-             val urlTask = uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                 if (!task.isSuccessful) {
-                     task.exception?.let {
-                         throw it
-                     }
-                 }
-                 return@Continuation ref.downloadUrl
-             })?.addOnCompleteListener { task ->
-                 if (task.isSuccessful) {
-                     val downloadUri = task.result
-                     addUploadRecordToDb(downloadUri.toString())
-                 } else {
-                     // Handle failures
-                 }
-             }?.addOnFailureListener{
-
-             }
-         }else{
-             Toast.makeText(this, "Please Upload an Image", Toast.LENGTH_SHORT).show()
-         }
-     }
-
-
-     private fun addUploadRecordToDb(uri: String){
-         val db = FirebaseFirestore.getInstance()
-
-         val data = HashMap<String, Any>()
-         data["imageUrl"] = uri
-
-         db.collection("posts")
-             .add(data)
-             .addOnSuccessListener { documentReference ->
-                 Toast.makeText(this, "Saved to DB", Toast.LENGTH_LONG).show()
-             }
-             .addOnFailureListener { e ->
-                 Toast.makeText(this, "Error saving to DB", Toast.LENGTH_LONG).show()
-             }
-     }
- */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,6 +59,34 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
                 dialog.show(supportFragmentManager, "Fotoğraf seç")
             } else {
                 permissionWant()
+            }
+        }
+    }
+
+    override fun getImagePath(ImagePath1: Uri?) {
+
+        galleryImageUri = ImagePath1
+        Picasso.with(this).load(galleryImageUri).resize(170, 150).into(ivProductİmage)
+
+    }
+
+    override fun getImageBitmap(bitmap: Bitmap) {
+
+        cameraImageBitmap = bitmap
+        ivProductİmage.setImageBitmap(bitmap)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 150 && resultCode == 100) {
+            if (data == null || data.data == null) {
+                return
+            }
+            try {
+                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, galleryImageUri)
+                ivProductİmage.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
         }
     }
@@ -223,27 +184,72 @@ class ProductActivity : AppCompatActivity(), ProductİmageFragment.onProductImag
     fun addProduct(view: View) {
         if (checkTextView()) {
             val addedProductItem = Products()
-            addedProductItem.categoryId = selectCategory(spnCategory.selectedItem.toString())
-            addedProductItem.date = LocalDateTime.now().toString()
-            addedProductItem.detail = etDetail.text.toString()
-            addedProductItem.name = etName.text.toString()
-            addedProductItem.piece = etPrice.text.toString()
-            addedProductItem.image = "image"
 
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-            val reference = FirebaseDatabase.getInstance().reference
-            val product = reference.child("Product").child(userId.toString()).child("product")
-            product.child(etBarcodId.text.toString()).setValue(addedProductItem)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        println("Veri eklendi")
-                        var intent = Intent(this, DetailActivity::class.java)
-                        intent.putExtra("productKey", etBarcodId.text.toString())
-                        startActivity(intent)
-                    } else {
-                        println("veri eklenemedi")
-                    }
+            if (galleryImageUri != null) {
+                val storeReference = FirebaseStorage.getInstance().reference
+                val imagekey = UUID.randomUUID().toString()
+                val ref = storeReference.child("images/$imagekey")
+                val file = galleryImageUri
+                val uploadTask = ref.putFile(file!!)
+
+                uploadTask.addOnFailureListener {
+                    println("Eklenemedi")
+                }.addOnSuccessListener {
+                    Toast.makeText(this, "Ürün Eklendi", Toast.LENGTH_LONG)
+                        .show()
+                    addedProductItem.categoryId =
+                        selectCategory(spnCategory.selectedItem.toString())
+                    addedProductItem.date = LocalDateTime.now().toString()
+                    addedProductItem.detail = etDetail.text.toString()
+                    addedProductItem.name = etName.text.toString()
+                    addedProductItem.piece = etPrice.text.toString()
+                    addedProductItem.image = imagekey
+
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+                    val reference = FirebaseDatabase.getInstance().reference
+                    val product =
+                        reference.child("Product").child(userId.toString()).child("product")
+                    product.child(etBarcodId.text.toString()).setValue(addedProductItem)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                val intent = Intent(this, DetailActivity::class.java)
+                                intent.putExtra("productKey", etBarcodId.text.toString())
+                                startActivity(intent)
+                            } else {
+                                println("veri eklenemedi")
+                            }
+                        }
                 }
+
+            } else {
+
+                addedProductItem.categoryId =
+                    selectCategory(spnCategory.selectedItem.toString())
+                addedProductItem.date = LocalDateTime.now().toString()
+                addedProductItem.detail = etDetail.text.toString()
+                addedProductItem.name = etName.text.toString()
+                addedProductItem.piece = etPrice.text.toString()
+                addedProductItem.image = ""
+
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                val reference = FirebaseDatabase.getInstance().reference
+                val product =
+                    reference.child("Product").child(userId.toString()).child("product")
+                product.child(etBarcodId.text.toString()).setValue(addedProductItem)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            println("Veri eklendi")
+
+                            val intent = Intent(this, DetailActivity::class.java)
+                            intent.putExtra("productKey", etBarcodId.text.toString())
+                            startActivity(intent)
+                        } else {
+                            println("veri eklenemedi")
+                        }
+                    }
+            }
+
+
         }
     }
 
