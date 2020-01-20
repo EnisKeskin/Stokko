@@ -127,7 +127,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/etDetail"
-        app:layout_constraintStart_toStartOf="@+id/productContent"
+        app:layout_constraintStart_toEndOf="@+id/btnDelete"
         app:layout_constraintTop_toBottomOf="@+id/etDetail"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -149,5 +149,18 @@
         app:layout_constraintStart_toStartOf="@+id/etId"
         app:layout_constraintTop_toTopOf="@+id/tvCategory"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#692B16"
+        android:text="Sil"
+        android:textColor="#FCFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/etDetail"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="@+id/productContent"
+        app:layout_constraintTop_toBottomOf="@+id/etDetail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
