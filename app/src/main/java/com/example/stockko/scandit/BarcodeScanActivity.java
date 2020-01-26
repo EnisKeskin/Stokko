@@ -51,7 +51,7 @@ import static android.content.DialogInterface.OnClickListener;
 public class BarcodeScanActivity
         extends CameraPermissionActivity implements BarcodeCaptureListener {
 
-    public static final String SCANDIT_LICENSE_KEY = "AfwuMFaLSPCHEAeHuEDFEhYllu3KGapcFiIrikUhqmyXatqWhnoPT15ydc5LaKfgOxahxBh1po93dS/VYDLlE+EsU+Z/fugqFBEd+8R+VZV+eIVuGiu9IE1nr3HWFLYyLh8OvO0MTfPcdGViTpCcUpD9HyyxoxAJS4h1XF5vivNJ4TrwzK2MLnm7y1mbUqQjnEBbYDVVjsO/QbvkNOJLOO0NJ05kzF6/W0lQpAHvLnP33uogptL/yOoY5qjzjpeB0tH/bIhnZOcMsAM6igo9dHuxP7lMYGi3hQyn/xCj8t2RzlIWnxkfIlsREVzGFJpVUDCDMclprOJ0ZWzz+/1mxreb60UReQSG6VyUMrBzdEwB0Gss/1KkujafBz+8QHk76YY8GZBz+EhYCBpjnAZoJh5bedHKhLbao8t6ICk7gLY2VHL0FweagR5q0OuOxYCsi3SkGhUcNk4u/GGR/1Ub+CXeW/bnjwK808VPqfxzYKRMPqBaFZhBO/COr1liyvU689+8EGXwBwtbIKADhNY9BlOBcLfD4trWr4IrQupPKb//eUXYeHD5RJDSsBSu5d2Ti/PXjKysEQKWuR63fuVvChzHZAjzGQB88f27/3WnwB540W3QcQlMu243SgORYjDucCce+HosIc0Kk7YF7EAvzxOj/rg+467mRjj7EinMHPQ/I5r2+JjRb02iP2lsF49rXGPrv0bw/BQJCZ0+lliIYVgyyKmhmODxSNmJFtBJgWrYTRvtUHX4R5cmUioHFytjSWGILyrlSQL4gy3KXBBGPrEWMLGgdlgT4h5rpj+Y6k3+1ljPJuXW";
+    public static final String SCANDIT_LICENSE_KEY = "-- ENTER BARCODE KEY HERE --";
 
     private DataCaptureContext dataCaptureContext;
     private BarcodeCapture barcodeCapture;
@@ -92,6 +92,7 @@ public class BarcodeScanActivity
         symbologies.add(Symbology.DATA_MATRIX);
         symbologies.add(Symbology.CODE39);
         symbologies.add(Symbology.CODE128);
+        symbologies.add(Symbology.INTERLEAVED_TWO_OF_FIVE);
         symbologies.add(Symbology.INTERLEAVED_TWO_OF_FIVE);
 
         barcodeCaptureSettings.enableSymbologies(symbologies);

@@ -42,6 +42,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/tvProductName"
         app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
@@ -61,6 +62,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/tvEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
@@ -80,6 +82,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/tvPassword"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
@@ -99,6 +102,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/tvShopName"
         app:layout_constraintTop_toBottomOf="@+id/tvShopName" />
 
@@ -118,6 +122,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPostalAddress"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/tvAddress"
         app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
 

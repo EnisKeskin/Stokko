@@ -9,37 +9,26 @@
         android:id="@+id/etMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="136dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/rememberMe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.364"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <Button
         android:id="@+id/btnGirisYap"
         android:layout_width="91dp"
         android:layout_height="56dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="36dp"
         android:backgroundTint="#692B16"
         android:text="@string/login"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <TextView
         android:id="@+id/tvKayitOl"
@@ -47,7 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="@string/kayıtgidis"
-        app:layout_constraintStart_toStartOf="@+id/checkBox"
+        app:layout_constraintEnd_toEndOf="@+id/btnGirisYap"
+        app:layout_constraintStart_toStartOf="@+id/btnGirisYap"
         app:layout_constraintTop_toBottomOf="@+id/btnGirisYap" />
 
     <EditText
@@ -58,6 +48,7 @@
         android:ems="10"
         android:hint="Şifre"
         android:inputType="textPassword"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="@+id/etMail"
         app:layout_constraintTop_toBottomOf="@+id/etMail" />
 

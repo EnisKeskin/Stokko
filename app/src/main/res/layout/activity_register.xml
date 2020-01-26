@@ -10,12 +10,13 @@
         android:id="@+id/etUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="96dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/k_adi"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintEnd_toEndOf="@+id/tvRegister"
+        app:layout_constraintStart_toStartOf="@+id/tvRegister"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
 
     <EditText
@@ -26,7 +27,9 @@
         android:ems="10"
         android:hint="@string/kayitSifre"
         android:inputType="textPassword"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="@+id/etMail"
+        app:layout_constraintStart_toStartOf="@+id/etMail"
         app:layout_constraintTop_toBottomOf="@+id/etMail" />
 
     <EditText
@@ -37,6 +40,7 @@
         android:ems="10"
         android:hint="@string/kayitsifretekrar"
         android:inputType="textPassword"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/etPassword"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
@@ -48,6 +52,7 @@
         android:ems="10"
         android:hint="@string/magazaAdresi"
         android:inputType="textPostalAddress"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintStart_toStartOf="@+id/etShopName"
         app:layout_constraintTop_toBottomOf="@+id/etShopName" />
 
@@ -59,6 +64,8 @@
         android:ems="10"
         android:hint="@string/mail"
         android:inputType="textEmailAddress"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintEnd_toEndOf="@+id/etUserName"
         app:layout_constraintStart_toStartOf="@+id/etUserName"
         app:layout_constraintTop_toBottomOf="@+id/etUserName" />
 
@@ -70,6 +77,7 @@
         android:ems="10"
         android:hint="@string/magazaAdi"
         android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="@+id/etPasswordAgain"
         app:layout_constraintTop_toBottomOf="@+id/etPasswordAgain" />
 
@@ -77,25 +85,26 @@
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="16dp"
         android:background="#692B16"
         android:text="@string/kaydol"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="@+id/etAddress"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/etAddress"
         app:layout_constraintTop_toBottomOf="@+id/etAddress" />
 
     <TextView
         android:id="@+id/tvRegister"
-        android:layout_width="288dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Kayıt Ol"
         android:textAlignment="center"
         android:textColor="#692B16"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
