@@ -100,11 +100,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
                 tabLayout.tabMode = TabLayout.MODE_FIXED
             }
 
-
-
-
-
-
             val reference = FirebaseDatabase.getInstance().reference
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val mail = FirebaseAuth.getInstance().currentUser?.email
@@ -127,13 +122,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
                 }
             })
-
-
-
-
-
-
-
 
         }
 
@@ -201,13 +189,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener,
 
         myadapter.myFilter.filter(newText)
         return true
-    }
-
-    fun SnowPopup(view: View) {
-        val kaydet: Button
-        mydialog.setContentView(R.layout.custompopup)
-        kaydet = mydialog.findViewById(R.id.btnProductAdd)
-        mydialog.show()
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {

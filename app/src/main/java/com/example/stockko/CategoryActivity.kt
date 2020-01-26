@@ -1,6 +1,7 @@
 package com.example.stockko
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,7 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
-
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     fun btnCategoryAdd(v: View) {
@@ -63,5 +64,18 @@ class CategoryActivity : AppCompatActivity() {
             }
         }
     }
+    override fun onSupportNavigateUp(): Boolean {
+        goToMain()
+        return super.onSupportNavigateUp()
+    }
 
+    override fun onBackPressed() {
+        goToMain()
+        super.onBackPressed()
+    }
+    private fun goToMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

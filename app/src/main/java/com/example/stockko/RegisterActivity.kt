@@ -65,6 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(
                                     this@RegisterActivity,
+
                                     task.exception.toString(),
                                     Toast.LENGTH_SHORT
                                 ).show()
